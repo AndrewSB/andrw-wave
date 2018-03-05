@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-const backgroundImageUrl = 'https://i.pinimg.com/236x/e3/a3/65/e3a36503e5a0a5fa9748412df8551173---bit-the-planets.jpg'
+const backgroundImageUrl = 'http://78.media.tumblr.com/081bf739ed5bacf9268c6951c67cc13b/tumblr_np01gl81Mb1qbzzgco1_r1_540.png'
 const okHandImageUrl = 'https://78.media.tumblr.com/c0f430296f0ec59343bb11e6e2a38a25/tumblr_o1q0o5T23V1uf5j8co1_250.gif'
 
 export default class extends Component {
@@ -21,13 +21,18 @@ const styles = {
     background: {
         backgroundImage: `url(${backgroundImageUrl})`,
         backgroundSize: 'cover',
-        backgroundPosition: 'bottom center',
+        overflow: 'hidden',
+        // I want the top of the mountains in the image to align with an offset
+        // of greater than 20px from the spinning hand. Maybe I should mess with
+        // the calc function, or more probably dynamically generate the
+        // percentage instead of hard coding it to 60%
+        backgroundPosition: 'calc(50%) 60%', // https://stackoverflow.com/a/12852312
+        backgroundRepeat: 'no-repeat',
         position: 'absolute',
         top: 0,
         bottom: 0,
         left: 0,
         right: 0,
-        imageRendering: 'pixelated',
     },
     title: {
         display: 'flex',
