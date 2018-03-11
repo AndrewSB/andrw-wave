@@ -1,24 +1,28 @@
 import React, { Component } from 'react'
-import ReactWindowSized from 'react-window-size'
-import FourOhFour from './components/FourOhFour.js'
-import Me from './components/Me.js'
+import Device from './components/Device'
 
-
+const Page = Object.freeze({
+  me: 0,
+  lost: 1,
+})
 
 class App extends Component {
-  render() {
-    switch (true) { // o_o "pattern matching", they call this. Javascript 😢
-      case (this.props.windowWidth > 575):
-        return (<p style={{display: 'flex', justifyContent: 'center'}}>
-          screen too wide
-        </p>)
-      // TODO: why does this look fine on the iPhone but not on macOS at this height? 715 breaks on desktop
-      // case (this.props.windowHeight < 715):
-      //   return <p style={{display: 'flex', justifyContent: 'center'}}>screen too short</p>
-      default:
-        return <Me />
+  state = {
+    currentPage: Page.me
+  }
+
+  constructor() {
+    super()
+    var weakThis = this
+    window.setPage = (page: Page) => {
+      weakThis.setState({ currentPage: page })
     }
+  }
+
+  render() {
+    console.log(this.state.currentPage)
+    return <Device currentPage={this.state.currentPage} />
   }
 }
 
-export default ReactWindowSized(App);
+export default App;

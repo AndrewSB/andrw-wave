@@ -45,6 +45,7 @@ export default class extends Component {
       if (i === opacityJumps.length) {
         clearInterval(intervalHandle)
         parentThis.setState({ animating: AnimationState.done, overlayAlpha: 0 })
+        this.props.goTo404()
       }
     }, 250)
 
