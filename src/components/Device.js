@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import ReactWindowSized from 'react-window-size'
-import FourOhFour from './FourOhFour.js'
-import Me from './Me.js'
+import Main from './Main.js'
 
 class Device extends Component {
   render() {
@@ -22,12 +21,7 @@ class Device extends Component {
       // case (this.props.windowHeight < 715):
       //   return <p style={{display: 'flex', justifyContent: 'center'}}>screen too short</p>
       default:
-        switch (this.props.currentPage) {
-        case 0:
-          return <Me goTo404={ () => { window.setPage(1) } }/>
-        case 1:
-          return <FourOhFour />
-        }
+        return <Main />
     }
   }
 }

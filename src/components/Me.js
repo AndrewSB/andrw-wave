@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 const backgroundImageUrl = 'https://78.media.tumblr.com/3c9a8417a347d806520acc60267a3dac/tumblr_nkap4jjcuq1twprc3o1_1280.jpg'
 
@@ -18,8 +19,12 @@ export default class extends Component {
     console.log('rendering')
     return (
         <div style={styles.background}>
-        <a style={styles.lost} onClick={this.handleClick.bind(this)}>u lost?</a>
-        <p style={styles.name}>A N D R W</p>
+          <div style={styles.lostContainer}>
+            <a style={styles.lost} onClick={this.handleClick.bind(this)}>u lost?</a>
+          </div>
+          <div style={styles.nameContainer}>
+            <p style={styles.name}>A N D R W</p>
+          </div>
         <div style={styles.whiteOverlay(this.state)} />
       </div>
     )
@@ -39,13 +44,12 @@ export default class extends Component {
     var i = 0;
     var parentThis = this;
     const intervalHandle = setInterval(() => {
-      console.log(parentThis.state)
       parentThis.setState({ overlayAlpha: opacityJumps[i] })
       i++;
       if (i === opacityJumps.length) {
         clearInterval(intervalHandle)
         parentThis.setState({ animating: AnimationState.done, overlayAlpha: 0 })
-        this.props.goTo404()
+        window.location.href = '/404'
       }
     }, 250)
 
@@ -84,20 +88,24 @@ const styles = {
     left: 0,
     right: 0,
   },
-  lost: {
+  lostContainer: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: '10vh',
+  },
+  lost: {
     color: '#DF976C',
     fontFamily: "Andale Mono, AndaleMono, monospace",
     fontSize: '3vw',
+  },
+  nameContainer: {
+    marginLeft: '5vw',
+    marginTop: '30vh',
   },
   name: {
     color: '#176EA8',
     fontFamily: "Andale Mono, AndaleMono, monospace",
     fontSize: '8vw',
-    marginLeft: '5vw',
-    marginTop: '30vh',
   },
 }
