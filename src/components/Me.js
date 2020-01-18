@@ -92,7 +92,7 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: '10vh',
+    marginTop: '9.5vh',
   },
   lost: {
     color: '#DF976C',
