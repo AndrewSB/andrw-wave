@@ -24,7 +24,7 @@ class Device extends Component {
               i purposefully have a minor online presence.  if you're here for some professional reason, go look at my [github](https://github.com/AndrewSB) or my scant-on-details [linkedin](https://linkedin.com/in/ndrww). 
             </p>
             <p style={Object.assign({}, centerTextStyle, {margin: '0'})}>
-              but, if you have something interesting to say, i'd recommend just emailing me: asbreckenridge [at] me.com. i love recieving interesting emails.
+              but, if you have something interesting to say, i'd recommend just emailing me: asbreckenridge [at] me.com. i love receiving interesting emails.
             </p>
           </div>
         </div>
