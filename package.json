@@ -15,8 +15,20 @@
     "build": "react-scripts build && cp build/index.html build/404.html",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "deploy": "react-scripts build && react-scripts deploy-surge && react-scripts deploy-ghpages",
+    "deploy": "npm run-script build && npm run-script deploy-surge && npm run-script deploy-ghpages",
     "deploy-surge": "npx surge build andrew.energy",
     "deploy-ghpages": "npx gh-pages -d build"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
