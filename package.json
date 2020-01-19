@@ -12,9 +12,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && cp build/index.html build/404.html",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "deploy": "react-scripts build && pushd build && npx surge . 'andrew.energy' && popd build"
+    "deploy": "react-scripts build && react-scripts deploy-surge && react-scripts deploy-ghpages",
+    "deploy-surge": "npx surge build andrew.energy",
+    "deploy-ghpages": "npx gh-pages -d build"
   }
 }
