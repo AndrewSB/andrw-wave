@@ -22,7 +22,7 @@ var dialogBoxState = [
   </>)},
   {height: 63, node: <>if you’ve made it this far, I would love to get to know you. send an e-mail to <a href='mailto:asbreckenridge@me.com'>asbreckenridge@me.com</a> with an answer to “What’s your favorite color?”</>},
   {height: 44, node: <>note: no one ever does this. I would be soOoOo thrilled if you did.</>},
-  {height: 30, node: <><a>always remember to make time to be lost</a></>}
+  {height: 30, node: <><a>remember to make time to be lost</a></>}
 ]
 
 const Me: React.FC = () => {
@@ -62,7 +62,6 @@ const Me: React.FC = () => {
         .background {
           background-image: url(${backgroundImageUrl});
           background-size: cover;
-          background-position: top center;
           width: 100%;
           height: 100%;
           justify-content: center;
