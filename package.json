@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "export": "npm run build && next export -o dist",
+    "start": "next start",
+    "deploy": "npm run export && npx surge --domain `cat CNAME` dist"
   },
   "dependencies": {
     "next": "9.3.4",
