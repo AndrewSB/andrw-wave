@@ -9,12 +9,6 @@ const backgroundImageUrlPallete = {
   'dominant': 'rgb(40, 70, 80)',
 };
 
-const AnimationState = Object.freeze({
-  notYet: 0,
-  animating: 1,
-  done: 2,
-})
-
 var dialogBoxState = [
   {height: 30, node: (<>?</>)},
   {height: 44, node: (<>this is a fun art project - not the portfolio you might expect</>)},
@@ -32,14 +26,6 @@ var dialogBoxState = [
 ]
 
 const Me: React.FC = () => {
-  const state = {
-    animating: AnimationState.notYet,
-    overlayAlpha: 0,
-  }
-  
-  // this is kind of a shit check, but media-queries dont work well in React and this seems to work
-  const isMobile = false // ['Mobile', 'iPhone', 'Android', 'Windows Phone'].some((candidateString) => navigator.userAgent.indexOf(candidateString) !== -1)
-
   const [boxState, setBoxState] = useState(0);
   const [height, setHeight] = useState(16);
   useEffect(
@@ -104,7 +90,7 @@ const Me: React.FC = () => {
           position: absolute;
           bottom: 22px;
           right: 22px;
-          font-size: 8px;
+          font-size: 14px;
           font-family: "Press Start 2P", Arial, sans-serif;
           border-radius: 2px;
           padding: 8px;
@@ -144,92 +130,6 @@ const Me: React.FC = () => {
       `}</style>
     </FakePhonePanel>
   );
-      // <>
-      //   <div style={styles.lostContainer(this.isMobile)}>
-      //     <a style={styles.lost} onClick={this.handleClick.bind(this)}>u lost?</a>
-      //   </div>
-      //   <div style={styles.nameContainer(this.isMobile)}>
-      //     <p style={styles.name}>A N D R W</p>
-      //   </div>
-      //   <div style={styles.whiteOverlay(this.state)} />
-      // </>
-
-  // handleClick() {
-  //   if (this.state.animating === AnimationState.animating) { return }
-
-  //   this.setState({ animating: AnimationState.animating })
-  //   this.animate()
-  // }
-
-  // // Callee is responsible for only calling this once
-  // animate() {
-  //   const opacityJumps = [30, 40, 50, 60, 70, 80, 90, 100]
-  //   var i = 0;
-  //   var parentThis = this;
-  //   const intervalHandle = setInterval(() => {
-  //     parentThis.setState({ overlayAlpha: opacityJumps[i] })
-  //     i++;
-  //     if (i === opacityJumps.length) {
-  //       clearInterval(intervalHandle)
-  //       parentThis.setState({ animating: AnimationState.done, overlayAlpha: 0 })
-  //       window.location.href = '/404'
-  //     }
-  //   }, 250)
-
-  // }
 }
 
 export default Me;
-
-const styles = {
-  whiteOverlay: (state) => {
-    if (state.animating === 1) {
-      return {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        background: 'white',
-        opacity: state.overlayAlpha / 100,
-      }
-    } else {
-      return { display: 'none' }
-    }
-  },
-  background: {
-    backgroundImage: `url(${backgroundImageUrl})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'top center',
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-  },
-  lostContainer: (isMobile) => {
-    return {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      marginRight: '3vw',
-      marginTop: isMobile ? '8.5vh' : '10vh',
-    }
-  },
-  lost: {
-    color: '#DF976C',
-    fontFamily: "Andale Mono, AndaleMono, monospace",
-    fontSize: '4vw',
-  },
-  nameContainer: (isMobile) => {
-    return {
-      marginLeft: isMobile ? '4vw' : '5vw',
-      marginTop: isMobile ? '25vh' : '31vh',
-    }
-  },
-  name: {
-    color: '#176EA8',
-    fontFamily: "Andale Mono, AndaleMono, monospace",
-    fontSize: '8vw',
-  },
-}
