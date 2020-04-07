@@ -21,13 +21,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
       </PageTransition>
       <style jsx global>{`
-          .transition-fade-enter {
-            opacity: 0;
-          }
-          .transition-fade-enter-active {
-            opacity: 1;
-            transition: opacity 400ms steps(2);
-          }
           .transition-fade-exit {
             opacity: 1;
           }
