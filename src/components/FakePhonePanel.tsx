@@ -4,7 +4,6 @@ interface Props {
   className?: string,
   customStyle?: string,
   showingWidth: number,
-  minimmumHeight?: number,
   children: React.ReactNode,
 };
 
@@ -38,12 +37,6 @@ const FakePhonePanel: React.FC<Props> = (props) => {
             width: 500px;
             border-radius: 10px;
             overflow: hidden;
-          }
-        }
-
-        @media(max-height: ${props.minimmumHeight}px) {
-          .fake-phone-panel-inner {
-            display: none;
           }
         }
       `}</style>
