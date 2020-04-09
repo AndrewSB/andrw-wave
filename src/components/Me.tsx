@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Router from 'next/router';
 import FakePhonePanel from './FakePhonePanel';
 
-const backgroundImageUrl = 'https://svgur.com/i/JtM.svg'
+const backgroundImageUrl = 'http://svgshare.com/i/JtN.svg'
 const oldBackgroundImageUrl = 'https://78.media.tumblr.com/3c9a8417a347d806520acc60267a3dac/tumblr_nkap4jjcuq1twprc3o1_1280.jpg'
 const backgroundImageUrlPallete = {
   'dominant': 'rgb(40, 70, 80)',
@@ -60,7 +60,7 @@ const Me: React.FC = () => {
       </div>
       <style jsx>{`
         .background {
-          background-image: url(${backgroundImageUrl});
+          background-image: url('/me.svg');
           background-size: cover;
           width: 100%;
           height: 100%;

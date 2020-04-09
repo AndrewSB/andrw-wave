@@ -2,8 +2,8 @@
 <rect width="700" height="1038" fill="#E5E5E5"/>
 <rect width="700" height="1038" fill="white"/>
 <rect width="700" height="1038" fill="url(#pattern0)"/>
-<text fill="#DF976C" xml:space="preserve" style="white-space: pre" font-family="Andale Mono" font-size="18" letter-spacing="0em"><tspan x="295" y="121.205">u lost?</tspan></text>
-<text fill="#176EA8" xml:space="preserve" style="white-space: pre" font-family="Andale Mono" font-size="55" letter-spacing="0em"><tspan x="31" y="485.96">A N D R W</tspan></text>
+<text fill="#DF976C" xml:space="preserve" style="white-space: pre" font-family="Andale Mono, Menlo-Regular" font-size="18" letter-spacing="0em"><tspan x="295" y="121.205">u lost?</tspan></text>
+<text fill="#176EA8" xml:space="preserve" style="white-space: pre" font-family="Andale Mono, Menlo-Regular" font-size="55" letter-spacing="0em"><tspan x="31" y="485.96">A N D R W</tspan></text>
 <defs>
 <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
 <use xlink:href="#image0" transform="scale(0.00142857 0.000963391)"/>
