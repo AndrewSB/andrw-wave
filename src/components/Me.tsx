@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Router from 'next/router';
 import FakePhonePanel from './FakePhonePanel';
 
-const backgroundImageUrl = 'https://svgshare.com/i/Jp7.svg'
+const backgroundImageUrl = 'https://svgur.com/i/JtM.svg'
 const oldBackgroundImageUrl = 'https://78.media.tumblr.com/3c9a8417a347d806520acc60267a3dac/tumblr_nkap4jjcuq1twprc3o1_1280.jpg'
 const backgroundImageUrlPallete = {
   'dominant': 'rgb(40, 70, 80)',
