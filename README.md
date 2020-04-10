@@ -2,6 +2,6 @@
 
 ### TODO
 
-1. preload assets somehow
-1. Handle animations better (isolate into a component?)
-1. Handle state better
+1. add more pages to the experience
+1. add a favicon
+1. robots.txt
