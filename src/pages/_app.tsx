@@ -16,6 +16,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           analytics.page({url: document.location.href});
           }}();
         `}</script>
+        <script async>{`
+          fetch("https://enc7ni3p7gol81k.m.pipedream.net?path=" + document.location.pathname + document.location.search)
+        `}</script>
       </Head>
       <PageTransition skipInitialTransition timeout={3200} classNames="transition-fade">
         <Component {...pageProps} />
