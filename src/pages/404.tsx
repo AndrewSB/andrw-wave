@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import FakePhonePanel from '../components/FakePhonePanel';
+import { AnalyticsHead } from './_app';
 
 const backgroundImageUrl = 'http://78.media.tumblr.com/081bf739ed5bacf9268c6951c67cc13b/tumblr_np01gl81Mb1qbzzgco1_r1_540.png'
 const backgroundImageUrlPallete = {
@@ -13,6 +14,7 @@ const okHandImageUrl = 'https://78.media.tumblr.com/c0f430296f0ec59343bb11e6e2a3
 const Custom404 = () => {
   return (
     <>
+      <AnalyticsHead path='/404' />
       <FakePhonePanel showingWidth={800} customStyle={`
         background: ${backgroundImageUrlPallete.lightPink};
         position: absolute;
@@ -53,7 +55,7 @@ const Custom404 = () => {
         p {
           font-size: 66px;
           font-family: Andale Mono, AndaleMono, monospace;
-          color: #E2019B;   
+          color: #E2019B;
         }
       `}</style>
     </>
@@ -61,33 +63,3 @@ const Custom404 = () => {
 };
 
 export default Custom404;
-
-const styles = {
-    background: {
-        backgroundImage: `url(${backgroundImageUrl})`,
-        backgroundSize: 'cover',
-        overflow: 'hidden',
-        // I want the top of the mountains in the image to align with an offset
-        // of greater than 20px from the spinning hand. Maybe I should mess with
-        // the calc function, or more probably dynamically generate the
-        // percentage instead of hard coding it to 60%
-        backgroundPosition: 'calc(50%) 60%', // https://stackoverflow.com/a/12852312
-        backgroundRepeat: 'no-repeat',
-        position: 'absolute',
-        top: 0,
-        bottom: 0,
-        left: 0,
-        right: 0,
-    },
-    title: {
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    ps: {
-      fontSize: 66,
-      color: '#E2019B',
-      fontFamily: 'Andale Mono, AndaleMono, monospace',
-    }
-}
