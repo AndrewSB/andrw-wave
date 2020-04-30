@@ -4,6 +4,7 @@ import calculateWordDimensions from '../calculate-text-dimensions';
 
 interface Props {
   styles?: string,
+  onNewText: (newText: string) => void,
   pushLostPage: () => void,
 };
 
@@ -50,6 +51,7 @@ const PokemonDialogBox: React.FC<Props> = (props) => {
         if (nextState == 0) props.pushLostPage();
         else {
           setBoxState(nextState);
+          props.onNewText(dialogBoxState[nextState].node);
           typed.reset();
         }
       }

@@ -25,11 +25,22 @@ const Me: React.FC = () => {
         <Link href='/404'>
           <a className='fourohfourlink'> </a>
         </Link>
-        <PokemonDialogBox pushLostPage={() => Router.push('/404')} styles={`
-          position: absolute;
-          bottom: 22px;
-          right: 22px;
-        `} />
+        <PokemonDialogBox
+          pushLostPage={() => Router.push('/404')}
+          onNewText={(newText) => {
+            // @ts-ignore
+            if (window.analytics !== undefined) {
+              // @ts-ignore
+              window.analytics.track('Tapped text', {
+                textval: newText
+              })
+            }
+          }}
+          styles={`
+            position: absolute;
+            bottom: 22px;
+            right: 22px;
+          `} />
       </div>
       <style jsx>{`
         .background {
