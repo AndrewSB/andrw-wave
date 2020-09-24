@@ -33,11 +33,16 @@ export const AnalyticsHead = dynamic(
   () => import('./_app').then(mod => mod._AnalyticsHead),
   { ssr: false }
 )
-export const _AnalyticsHead: React.FC<{path: string}> = ({path}) => {
+export const _AnalyticsHead: React.FC<{ path: string }> = ({ path }) => {
+  if (!process.env.ANALYTICS) {
+    return null;
+  }
+
   return (
     <Head>
-      <script defer dangerouslySetInnerHTML={{__html:
-        dedent`
+      <script defer dangerouslySetInnerHTML={{
+        __html:
+          dedent`
         function create_UUID() {
           var dt = new Date().getTime();
           var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -50,16 +55,19 @@ export const _AnalyticsHead: React.FC<{path: string}> = ({path}) => {
         window.tuuid = create_UUID()
         `
       }} />
-      <script defer async dangerouslySetInnerHTML={{__html: dedent`
+      <script defer async dangerouslySetInnerHTML={{
+        __html: dedent`
         !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
         analytics.load("xoFId4OzdmQYD6HQWyKiZKyZjhfszGup");
         }}();
       `}} />
-      <script defer dangerouslySetInnerHTML={{__html:
-        `analytics.page({url: document.location.href, uuid: window.tuuid, path: '${path}'});`
+      <script defer dangerouslySetInnerHTML={{
+        __html:
+          `analytics.page({url: document.location.href, uuid: window.tuuid, path: '${path}'});`
       }} />
-      <script defer dangerouslySetInnerHTML={{__html:
-        `fetch("https://enc7ni3p7gol81k.m.pipedream.net?path=${path}&uuid=" + window.tuuid)`
+      <script defer dangerouslySetInnerHTML={{
+        __html:
+          `fetch("https://enc7ni3p7gol81k.m.pipedream.net?path=${path}&uuid=" + window.tuuid)`
       }} />
     </Head>
   )
