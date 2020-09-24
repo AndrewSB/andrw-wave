@@ -1,6 +1,8 @@
 import React from 'react';
+import Img from 'react-optimized-image';
 import FakePhonePanel from '../components/FakePhonePanel';
 import { AnalyticsHead } from './_app';
+import styles from './404.module.css';
 
 const backgroundImageUrl = 'http://78.media.tumblr.com/081bf739ed5bacf9268c6951c67cc13b/tumblr_np01gl81Mb1qbzzgco1_r1_540.png'
 const backgroundImageUrlPallete = {
@@ -23,28 +25,16 @@ export default function Custom404() {
         left: 0;
         bottom: 0;
       `} >
-        <div className='background' >
+        <div className={styles.background} >
           <div className='title'>
             <p>4</p>
-            <img src={okHandImageUrl} />
+            <Img src={require('../../public/ok-hand.gif')} />
             <p>4</p>
           </div>
         </div>
       </FakePhonePanel>
 
       <style jsx>{`
-        .background {
-          background-image: url(${backgroundImageUrl});
-          background-size: cover;
-          overflow: hidden;
-          background-repeat: no-repeat;
-
-          width: 100%;
-          height: 100%;
-
-          background-position: calc(50%) 80%;
-        }
-
         .title {
           display: flex;
           flex-direction: row;
