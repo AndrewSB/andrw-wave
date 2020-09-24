@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import Router from 'next/router';
 import FakePhonePanel from './FakePhonePanel';

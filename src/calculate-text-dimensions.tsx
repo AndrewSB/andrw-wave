@@ -1,4 +1,4 @@
-export default function (text: string, width: number): {width: number, height: number} {
+export default function calculateTextDimensions(text: string, width: number): {width: number, height: number} {
   var classes = [];
 
   classes.push('textDimensionCalculation');

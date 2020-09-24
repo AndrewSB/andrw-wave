@@ -9,18 +9,20 @@ interface Props {
 };
 
 var dialogBoxState = [
-  {height: 30, node: '?'},
-  {height: 30, node: (`
+  { height: 30, node: '?' },
+  {
+    height: 30, node: (`
     here are some links to click:
     <span> </span>
     <a href='https://github.com/AndrewSB'>github</a>
     <span> </span>
     <a href='https://linkedin.com/in/ndrww'>linkedin</a>
     <span> </span>
-  `)},
-  {height: 63, node: 'if you’ve made it this far, I would love to get to know you. send an e-mail to <a href=\'mailto:asbreckenridge@me.com\'>asbreckenridge@me.com</a> with an answer to \“What’s your favorite color?\"'},
-  {height: 44, node: 'note: no one ever does this. I would be soOoOo thrilled if you did.'},
-  {height: 30, node: '<a>remember to make time to be lost</a>'}
+  `)
+  },
+  { height: 63, node: 'if you’ve made it this far, I would love to get to know you. send an e-mail to <a href=\'mailto:asbreckenridge@me.com\'>asbreckenridge@me.com</a> with an answer to \“What’s your favorite color?\"' },
+  { height: 44, node: 'note: no one ever does this. I would be soOoOo thrilled if you did.' },
+  { height: 30, node: '<a>remember to make time to be lost</a>' }
 ]
 
 const PokemonDialogBox: React.FC<Props> = (props) => {
@@ -57,20 +59,20 @@ const PokemonDialogBox: React.FC<Props> = (props) => {
       }
     }}
     className={'box ' + (boxState == 0 ? 'inactive' : 'active')}>
-      <div id='box-content'>
-        <Typed
-          typedRef={typed => setTyped(typed)}
-          preStringTyped={() => setTextDoneTyping(false)}
-          onStringTyped={() => {
-            setSkipTypingCommand(false)
-            setTextDoneTyping(true)
-          }}
-          strings={[skipTypingCommand ? `\`${dialogBoxState[boxState].node}\`` : dialogBoxState[boxState].node]}
-          typeSpeed={9}
-          showCursor={false} />
-      </div>
-      {textDoneTyping && <i />}
-  <style jsx>{`
+    <div id='box-content'>
+      <Typed
+        typedRef={typed => setTyped(typed)}
+        preStringTyped={() => setTextDoneTyping(false)}
+        onStringTyped={() => {
+          setSkipTypingCommand(false)
+          setTextDoneTyping(true)
+        }}
+        strings={[skipTypingCommand ? `\`${dialogBoxState[boxState].node}\`` : dialogBoxState[boxState].node]}
+        typeSpeed={9}
+        showCursor={false} />
+    </div>
+    {textDoneTyping && <i />}
+    <style jsx>{`
     .box {
       ${props.styles}
       height: ${boxHeight + 8}px;

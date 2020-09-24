@@ -1,4 +1,4 @@
-import React, { Component, CSSProperties } from 'react';
+import React from 'react';
 
 interface Props {
   className?: string,

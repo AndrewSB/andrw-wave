@@ -11,7 +11,7 @@ const backgroundImageUrlPallete = {
 };
 const okHandImageUrl = 'https://78.media.tumblr.com/c0f430296f0ec59343bb11e6e2a38a25/tumblr_o1q0o5T23V1uf5j8co1_250.gif'
 
-const Custom404 = () => {
+export default function Custom404() {
   return (
     <>
       <AnalyticsHead path='/404' />
@@ -61,5 +61,3 @@ const Custom404 = () => {
     </>
   )
 };
-
-export default Custom404;
