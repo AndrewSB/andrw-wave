@@ -1,5 +1,4 @@
 const withPlugins = require('next-compose-plugins');
-const optimizedImages = require('next-optimized-images');
 
 const nextConfig = {
   async redirects() {
@@ -14,11 +13,5 @@ const nextConfig = {
 }
 
 module.exports = withPlugins([
-  [optimizedImages, {
-    /* config for next-optimized-images */
-  }],
-
-
   // your other plugins here
-
 ], nextConfig);
