@@ -4,17 +4,29 @@ import { PageTransition } from "next-page-transitions";
 import dedent from "dedent";
 import dynamic from "next/dynamic";
 
+const TITLE = "my work is serious, i am not | mu";
+
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <title>mu</title>
-        <style>{`body { margin: 0; }`}</style>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+        <meta name="theme-color" content="#000000" />
+        <link rel="manifest" href="/manifest.json" />
+        <style>{"body { margin: 0; }"}</style>
         <link
-          href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
           rel="stylesheet"
-        ></link>
+          href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+        />
+        <title>{TITLE}</title>
+        <meta name="title" content={TITLE} />
+        <meta
+          name="og:image"
+          content="https://i.giphy.com/media/BERINdDXSdkevihtAK/giphy.gif"
+        />
       </Head>
       <PageTransition
         skipInitialTransition
