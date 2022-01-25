@@ -41,6 +41,14 @@ export const AnalyticsHead = dynamic(
   { ssr: false }
 );
 export const _AnalyticsHead: React.FC<{ path: string }> = ({ path }) => {
+  if (process.env.NODE_ENV === "development") {
+    return (
+      <Head>
+        <meta name="development" content="ayy boy" />
+      </Head>
+    );
+  }
+
   return (
     <Head>
       <script
