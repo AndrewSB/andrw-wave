@@ -1,0 +1,84 @@
+[
+    {
+        "title": "Lazy Susan",
+        "artist": "Rich Brian, 21 Savage, Warren Hue, & Masiwei",
+        "src": "Lazy Susan.m4a"
+    },
+    {
+        "title": "Azuki Remix - Fed Up",
+        "artist": "Bazanji",
+        "src": "fedupazuki.wav"
+    },
+    {
+        "title": "B.Y.S.",
+        "artist": "keshi",
+        "img_src": "./images/song-2.jpg",
+        "src": "BYS.m4a"
+    },
+    {
+        "title": "WANTED",
+        "artist": "Junoflo & G2",
+        "img_src": "./images/song-2.jpg",
+        "src": "WANTED.m4a"
+    },
+    {
+        "title": "Drifting",
+        "artist": "Jay Chou",
+        "img_src": "./images/song-2.jpg",
+        "src": "drifting.mp3"
+    },
+    {
+        "title": "MUKKBANG!",
+        "artist": "Lil Cherry & GOLDBUUDA",
+        "img_src": "./images/song-2.jpg",
+        "src": "MUKKBANG!.m4a"
+    },
+    {
+        "title": "damn Right",
+        "artist": "Audrey Nuna",
+        "img_src": "./images/song-2.jpg",
+        "src": "damn Right.m4a"
+    },
+    {
+        "title": "Drip",
+        "artist": "Jesse ft. Jay Park",
+        "img_src": "./images/song-2.jpg",
+        "src": "Drip.m4a"
+    },
+    {
+        "title": "Jasmine",
+        "artist": "DPR LIVE",
+        "img_src": "./images/song-2.jpg",
+        "src": "Jasmine.m4a"
+    },
+    {
+        "title": "Gundal",
+        "artist": "Flowsik & Gonhills",
+        "img_src": "./images/song-2.jpg",
+        "src": "Gundal.m4a"
+    },
+    {
+        "title": "Wifey",
+        "artist": "CAMO",
+        "img_src": "./images/song-2.jpg",
+        "src": "Wifey.m4a"
+    },
+    {
+        "title": "Level Up",
+        "artist": "Malikaii",
+        "img_src": "./images/song-2.jpg",
+        "src": "LEVEL UP!.wav"
+    },
+    {
+        "title": "Working For It",
+        "artist": "ZHU, Skrillex, & THEY",
+        "img_src": "./images/song-2.jpg",
+        "src": "Working For It.m4a"
+    },
+    {
+        "title": "\u8d70\u5230\u98db",
+        "artist": "Trout Fresh. d8ZI. Julia Wu. Kumachan. B.C.W. Barry. Dwagie",
+        "img_src": "./images/song-2.jpg",
+        "src": "zoudaofei.m4a"
+    }
+];
