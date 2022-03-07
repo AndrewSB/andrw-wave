@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "lint": "next lint",
     "export": "npm run build && next export -o dist",
     "start": "next start",
     "deploy": "npm run export && npx surge --domain `cat CNAME` dist"
@@ -12,6 +13,7 @@
   "dependencies": {
     "dedent": "^0.7.0",
     "next": "^12.3.1",
+    "next-compose-plugins": "^2.2.1",
     "next-page-transitions": "^1.0.0-beta.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -21,6 +23,8 @@
     "@types/dedent": "^0.7.0",
     "@types/node": "^18.7.23",
     "@types/react": "^18.0.21",
+    "eslint": "8.24.0",
+    "eslint-config-next": "12.3.1",
     "typescript": "^4.8.4"
   }
 }
