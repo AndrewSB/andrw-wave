@@ -5,16 +5,14 @@ import AnalyticsHead from "../components/AnalyticsHead";
 import styles from "./404.module.css";
 import FourOhFourImage from "../../public/ok-hand.gif";
 
-const backgroundImageUrl =
-  "http://78.media.tumblr.com/081bf739ed5bacf9268c6951c67cc13b/tumblr_np01gl81Mb1qbzzgco1_r1_540.png";
+// const backgroundImageUrl = "http://78.media.tumblr.com/081bf739ed5bacf9268c6951c67cc13b/tumblr_np01gl81Mb1qbzzgco1_r1_540.png";
+// const okHandImageUrl = "https://78.media.tumblr.com/c0f430296f0ec59343bb11e6e2a38a25/tumblr_o1q0o5T23V1uf5j8co1_250.gif";
 const backgroundImageUrlPallete = {
   dominant: "rgb(194, 194, 219)",
   lightPink: "rgba(227, 182, 251, 0.9)",
   darkPink: "rgba(150, 124, 170)",
   lightGrey: "rgb(182, 201, 207)",
 };
-const okHandImageUrl =
-  "https://78.media.tumblr.com/c0f430296f0ec59343bb11e6e2a38a25/tumblr_o1q0o5T23V1uf5j8co1_250.gif";
 
 export default function Custom404() {
   return (
