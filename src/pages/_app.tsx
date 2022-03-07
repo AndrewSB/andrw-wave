@@ -28,15 +28,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       >
         <Component {...pageProps} />
       </PageTransition>
-      <style jsx global>{`
-        .transition-fade-exit {
-          opacity: 1;
-        }
-        .transition-fade-exit-active {
-          opacity: 0;
-          transition: opacity 2500ms steps(7);
-        }
-      `}</style>
     </>
   );
 }

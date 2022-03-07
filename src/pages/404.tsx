@@ -3,6 +3,7 @@ import Image from "next/image";
 import FakePhonePanel from "../components/FakePhonePanel";
 import AnalyticsHead from "../components/AnalyticsHead";
 import styles from "./404.module.css";
+import FourOhFourImage from "../../public/ok-hand.gif";
 
 const backgroundImageUrl =
   "http://78.media.tumblr.com/081bf739ed5bacf9268c6951c67cc13b/tumblr_np01gl81Mb1qbzzgco1_r1_540.png";
@@ -33,7 +34,12 @@ export default function Custom404() {
         <div className={styles.background}>
           <div className="title">
             <p>4</p>
-            <Image src="/ok-hand.gif" width={250} height={250} />
+            <Image
+              alt="ok hand"
+              src={FourOhFourImage}
+              width={250}
+              height={250}
+            />
             <p>4</p>
           </div>
         </div>
