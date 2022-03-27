@@ -11,6 +11,7 @@
     "deploy": "npm run export && npx surge --domain `cat CNAME` dist"
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "^1.7.0",
     "dedent": "^0.7.0",
     "next": "^12.3.1",
     "next-compose-plugins": "^2.2.1",

@@ -1,5 +1,4 @@
-const LISTENBRAINZ_KEY = process.env.LISTENBRAINZ_KEY;
-const SPOTIFY_KEY = process.env.SPOTIFY_KEY;
+import { LISTENBRAINZ_KEY, SPOTIFY_KEY } from "../../constants";
 
 export type INowPlayingResponse = {
   isPlaying: boolean;
