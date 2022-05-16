@@ -46,9 +46,10 @@ const TrackAnalyticsHead: React.FC<{
 
   return (
     <Head>
-      {process.env.NODE_ENV === "development" && (
+      {process.env.NODE_ENV === "development" ? (
+        <meta name="development" content="ayy boy" />
+      ) : (
         <>
-          <meta name="development" content="ayy boy" />
           <Script
             strategy="lazyOnload"
             dangerouslySetInnerHTML={{
