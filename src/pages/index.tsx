@@ -1,13 +1,12 @@
-import React from 'react';
-import Me from '../components/Me';
-import { AnalyticsHead } from './_app';
+import React from "react";
+import Me from "../components/Me";
+import AnalyticsHead from "../components/AnalyticsHead";
 
 export default function Home() {
   return (
     <>
-      <AnalyticsHead path='/' />
+      <AnalyticsHead path="/" incrementVists={true} />
       <Me />
     </>
-  )
+  );
 }
-

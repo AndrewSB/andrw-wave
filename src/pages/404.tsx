@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import FakePhonePanel from "../components/FakePhonePanel";
-import { AnalyticsHead } from "./_app";
+import AnalyticsHead from "../components/AnalyticsHead";
 import styles from "./404.module.css";
 
 const backgroundImageUrl =
@@ -18,7 +18,7 @@ const okHandImageUrl =
 export default function Custom404() {
   return (
     <>
-      <AnalyticsHead path="/404" />
+      <AnalyticsHead path="/404" incrementVists={false} />
       <FakePhonePanel
         showingWidth={800}
         customStyle={`
