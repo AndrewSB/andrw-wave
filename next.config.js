@@ -1,6 +1,4 @@
-const withPlugins = require('next-compose-plugins');
-
-const nextConfig = {
+module.exports = {
   async redirects() {
     return [
       {
@@ -11,7 +9,3 @@ const nextConfig = {
     ]
   },
 }
-
-module.exports = withPlugins([
-  // your other plugins here
-], nextConfig);
