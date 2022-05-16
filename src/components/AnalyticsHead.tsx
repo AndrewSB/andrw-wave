@@ -1,3 +1,4 @@
+import React from "react";
 import Head from "next/head";
 import dedent from "dedent";
 import dynamic from "next/dynamic";
@@ -49,7 +50,7 @@ const TrackAnalyticsHead: React.FC<{
       {process.env.NODE_ENV === "development" ? (
         <meta name="development" content="ayy boy" />
       ) : (
-        <>
+        <React.Fragment>
           <meta name="a" content="on" />
           <Script
             strategy="lazyOnload"
@@ -75,7 +76,7 @@ const TrackAnalyticsHead: React.FC<{
         `,
             }}
           />
-        </>
+        </React.Fragment>
       )}
     </Head>
   );
