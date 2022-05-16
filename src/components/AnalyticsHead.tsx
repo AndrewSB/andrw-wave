@@ -50,6 +50,7 @@ const TrackAnalyticsHead: React.FC<{
         <meta name="development" content="ayy boy" />
       ) : (
         <>
+          <meta name="a" content="on" />
           <Script
             strategy="lazyOnload"
             dangerouslySetInnerHTML={{
