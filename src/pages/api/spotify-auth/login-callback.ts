@@ -1,10 +1,6 @@
-import { env } from "process";
+import { SPOTIFY_SECRET } from "../../../constants";
 
 export default async function handler(req, res) {
-  console.log(req.query);
-  console.log(req.body);
-  console.log("env", env);
-
   var client_id = "ac7e09a1710b4fe1ac114d5770570f05";
 
   var code = req.query.code || null;
@@ -20,9 +16,7 @@ export default async function handler(req, res) {
     headers: {
       Authorization:
         "Basic " +
-        new Buffer(client_id + ":" + env["SPOTIFY_CLIENT_SECRET"]).toString(
-          "base64"
-        ),
+        new Buffer(client_id + ":" + SPOTIFY_SECRET).toString("base64"),
     },
     method: "POST",
   });
