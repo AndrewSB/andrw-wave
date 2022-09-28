@@ -38,6 +38,7 @@ const Me: React.FC = () => {
             track={nowPlaying?.track}
             artist={nowPlaying?.artist}
             spotifyUrl={nowPlaying?.external_link}
+            previewUrl={nowPlaying?.preview_url}
           />
         </div>
         <PokemonDialogBox

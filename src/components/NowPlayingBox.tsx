@@ -5,24 +5,52 @@ type Props = {
   track?: string;
   artist?: string;
   spotifyUrl?: string;
+  previewUrl?: string;
 };
 
-const NowPlayingBox: React.FC<Props> = ({ track, artist, spotifyUrl }) => {
-  if (track === undefined || artist === undefined || spotifyUrl === undefined) {
+const NowPlayingBox: React.FC<Props> = ({
+  track,
+  artist,
+  spotifyUrl,
+  previewUrl,
+}) => {
+  const [isPlaying, setIsPlaying] = React.useState(false);
+
+  if (
+    track === undefined ||
+    artist === undefined ||
+    spotifyUrl === undefined ||
+    previewUrl === undefined
+  ) {
     return null;
   } else {
     return (
       <div className="relative duration-100 bg-transparent">
         <button
           onClick={(e) => {
-            alert(
-              `andrew, wherever he may be in the world, is listening to "${track} by ${artist}", literally right now.`
-            );
+            if (!isPlaying) {
+              setIsPlaying(true);
+              new Audio(previewUrl).play();
+            } else {
+              alert(
+                `andrew, wherever he may be in the world, is listening to "${track} by ${artist}", literally right now.`
+              );
+            }
             e.preventDefault();
           }}
-          className="absolute duration-300 hover:scale-110 active:scale-95 transform flex items-center justify-center -top-5 -right-2 z-30 h-10 w-10 border-2 rounded-full overflow-hidden bg-white bg-opacity-20 backdrop-blur-3xl text-white border-opacity-20 border-white"
+          className="absolute duration-300 hover:scale-110 active:scale-95 transform flex items-center justify-center -top-5 -right-2 z-30 h-10 w-10 border-2 rounded-full overflow-hidden bg-white bg-opacity-20 backdrop-blur-3xl text-white border-[#284650]"
         >
-          ?
+          {isPlaying ? (
+            "?"
+          ) : (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-3 fill-current"
+              viewBox="0 0 24 24"
+            >
+              <path d="M3 22v-20l18 10-18 10z"></path>
+            </svg>
+          )}
         </button>
         <div
           className="duration-300 bg-white bg-opacity-30 cursor-pointer h-14 m-4 shadow-md flex rounded-md overflow-y-visible"
@@ -39,6 +67,7 @@ const NowPlayingBox: React.FC<Props> = ({ track, artist, spotifyUrl }) => {
             className="w-5 h-full mx-4 pb-3 pt-3 inline-flex justify-between relative"
             style={{
               transition: "all 1s ease",
+              opacity: isPlaying ? 1 : 0,
             }}
           >
             <Keyframes
