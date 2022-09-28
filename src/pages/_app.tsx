@@ -24,7 +24,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <PageTransition
         skipInitialTransition
-        timeout={3200}
+        timeout={1650}
         classNames="transition-fade"
       >
         <Component {...pageProps} />

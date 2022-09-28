@@ -14,7 +14,7 @@ export default function Document() {
         }
         .transition-fade-exit-active {
           opacity: 0;
-          transition: opacity 2500ms steps(7);
+          transition: opacity 1600ms steps(7);
         }
       `}</style>
         <link
