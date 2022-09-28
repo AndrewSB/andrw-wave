@@ -9,9 +9,12 @@ interface Props {
 }
 
 var dialogBoxState = [
-  { height: 30, node: "?" },
   {
-    height: 30,
+    // height: 30,
+    node: "?",
+  },
+  {
+    // height: 30,
     node: `
     here are some links to click:
     <span> </span>
@@ -22,19 +25,22 @@ var dialogBoxState = [
   `,
   },
   {
-    height: 63,
-    node: "if you’ve made it this far, I would love to get to know you. send an e-mail to <a href='mailto:asbreckenridge@me.com'>asbreckenridge@me.com</a> with an answer to “What’s your favorite color?\"",
+    // height: 63,
+    node: "if you've made it this far, I would love to get to know you. send an e-mail to <a href='mailto:asbreckenridge@me.com'>asbreckenridge@me.com</a> with an answer to “What's your favorite color?\"",
   },
   {
-    height: 44,
+    // height: 44,
     node: "note: no one ever does this. I would be soOoOo thrilled if you did.",
   },
-  { height: 30, node: "<a>remember to make time to be lost</a>" },
+  {
+    // height: 30,
+    node: "<a>remember to make time to be lost</a>",
+  },
 ];
 
 const PokemonDialogBox: React.FC<Props> = (props) => {
   const [boxState, setBoxState] = useState(0);
-  const [boxHeight, setBoxHeight] = useState(18);
+  const [boxHeight, setBoxHeight] = useState(30);
 
   const [typed, setTyped] = useState(undefined);
 
@@ -45,9 +51,9 @@ const PokemonDialogBox: React.FC<Props> = (props) => {
     const box = document.getElementById("box-content");
     const boxDimensions = calculateWordDimensions(
       dialogBoxState[boxState].node,
-      box.getBoundingClientRect().width
+      box.getBoundingClientRect().width - 9 * 2 // there's padding of 9px on each side
     );
-    setBoxHeight(boxDimensions.height);
+    setBoxHeight(Math.max(30, boxDimensions.height));
   }, [boxState]);
 
   return (
@@ -68,7 +74,7 @@ const PokemonDialogBox: React.FC<Props> = (props) => {
       }}
       className={"box " + (boxState == 0 ? "inactive" : "active")}
     >
-      <div id="box-content">
+      <div id="box-content" className="cursor-default">
         <Typed
           typedRef={(typed) => setTyped(typed)}
           preStringTyped={() => setTextDoneTyping(false)}
@@ -81,7 +87,7 @@ const PokemonDialogBox: React.FC<Props> = (props) => {
               ? `\`${dialogBoxState[boxState].node}\``
               : dialogBoxState[boxState].node,
           ]}
-          typeSpeed={9}
+          typeSpeed={12}
           showCursor={false}
         />
       </div>
