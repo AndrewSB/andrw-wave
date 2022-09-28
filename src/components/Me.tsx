@@ -15,8 +15,6 @@ const backgroundImageUrlPallete = {
 
 const Me: React.FC = () => {
   const { nowPlaying, error } = useNowPlaying();
-  const track = nowPlaying?.track;
-  const artist = nowPlaying?.artist;
 
   return (
     <FakePhonePanel
@@ -36,7 +34,11 @@ const Me: React.FC = () => {
           <a className="fourohfourlink"> </a>
         </Link>
         <div className="block fixed left-0 md:px-5 bg-transparent ml-[-20px] md:ml-0 bottom-24 md:bottom-14 max-w-full">
-          <NowPlayingBox track={track} artist={artist} />
+          <NowPlayingBox
+            track={nowPlaying?.track}
+            artist={nowPlaying?.artist}
+            spotifyUrl={nowPlaying?.external_link}
+          />
         </div>
         <PokemonDialogBox
           pushLostPage={() => Router.push("/404")}

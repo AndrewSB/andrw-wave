@@ -109,6 +109,8 @@ async function spotifyNowPlaying(): Promise<any> {
       artist: nowPlayingJSON.item.artists[0].name,
       album: nowPlayingJSON.item.album.name,
       album_art: nowPlayingJSON.item.album.images[0].url,
+      external_link: nowPlayingJSON.item.external_urls.spotify,
+      preview_url: nowPlayingJSON.item.preview_url,
     };
   }
 }

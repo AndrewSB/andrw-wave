@@ -1,4 +1,7 @@
 module.exports = {
+  images: {
+    domains: ['i.scdn.co'],
+  },
   async redirects() {
     return [
       {
@@ -8,7 +11,6 @@ module.exports = {
       },
     ]
   },
-
      async headers() {
       return [
         {

@@ -4,10 +4,11 @@ import Image from "next/future/image";
 type Props = {
   track?: string;
   artist?: string;
+  spotifyUrl?: string;
 };
 
-const NowPlayingBox: React.FC<Props> = ({ track, artist }) => {
-  if (track === undefined || artist === undefined) {
+const NowPlayingBox: React.FC<Props> = ({ track, artist, spotifyUrl }) => {
+  if (track === undefined || artist === undefined || spotifyUrl === undefined) {
     return null;
   } else {
     return (
@@ -25,7 +26,7 @@ const NowPlayingBox: React.FC<Props> = ({ track, artist }) => {
         </button>
         <div
           className="duration-300 bg-white bg-opacity-30 cursor-pointer h-14 m-4 shadow-md flex rounded-md overflow-y-visible"
-          onClick={() => alert("to")}
+          onClick={() => open(spotifyUrl, "_blank")}
         >
           <Image
             src="/jax.png"
