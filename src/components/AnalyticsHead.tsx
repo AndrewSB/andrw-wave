@@ -53,6 +53,7 @@ const TrackAnalyticsHead: React.FC<{
         <React.Fragment>
           <meta name="a" content="on" />
           <Script
+            id="pipedream"
             strategy="lazyOnload"
             dangerouslySetInnerHTML={{
               __html: dedent`
@@ -66,6 +67,7 @@ const TrackAnalyticsHead: React.FC<{
             }}
           />
           <Script
+            id="ga"
             strategy="lazyOnload"
             dangerouslySetInnerHTML={{
               __html: dedent`

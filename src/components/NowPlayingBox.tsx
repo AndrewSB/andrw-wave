@@ -52,7 +52,7 @@ const NowPlayingBox: React.FC<Props> = ({ track, artist }) => {
               <span
                 key={animationDelay}
                 style={{
-                  background: "#cd2644!important",
+                  backgroundColor: "#DD926D",
                   opacity: 0.8,
                   width: 5,
                   content: "",

@@ -52,6 +52,9 @@ async function spotifyAuth(): Promise<any> {
   // } else {
   //   // refresh, then update, then return
   //   const rt = await fetch(`${kvStoreUrl}/r`);
+
+  console.log("about to refresh spotify");
+
   const refreshResponse = await fetch(
     "https://accounts.spotify.com/api/token",
     {
@@ -67,6 +70,8 @@ async function spotifyAuth(): Promise<any> {
     }
   );
   const refreshJSON = await refreshResponse.json();
+
+  console.log("refreshed spotify", refreshResponse.status, refreshJSON);
 
   const newApiKey = refreshJSON.access_token;
   return newApiKey;
@@ -88,6 +93,7 @@ async function spotifyNowPlaying(): Promise<any> {
   );
 
   if (nowPlaying.status !== 200) {
+    console.log("spotify not playing");
     return {};
   }
   const nowPlayingJSON = await nowPlaying.json();
@@ -109,7 +115,6 @@ async function spotifyNowPlaying(): Promise<any> {
 
 export default async function handler(req, res) {
   try {
-    console.log("trying");
     const nowPlaying = await spotifyNowPlaying();
     res.status(200).json(nowPlaying);
   } catch (error) {
