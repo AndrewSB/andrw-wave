@@ -5,6 +5,7 @@ import FakePhonePanel from "./FakePhonePanel";
 import PokemonDialogBox from "./PokemonDialogBox";
 import styles from "./Me.module.css";
 import { useNowPlaying } from "../hooks";
+import NowPlayingBox from "./NowPlayingBox";
 
 // const backgroundImageUrl = 'http://svgshare.com/i/JtN.svg'
 // const oldBackgroundImageUrl = 'https://78.media.tumblr.com/3c9a8417a347d806520acc60267a3dac/tumblr_nkap4jjcuq1twprc3o1_1280.jpg'
@@ -14,8 +15,8 @@ const backgroundImageUrlPallete = {
 
 const Me: React.FC = () => {
   const { nowPlaying, error } = useNowPlaying();
-
-  console.log("swr", nowPlaying, error);
+  const track = nowPlaying?.track;
+  const artist = nowPlaying?.artist;
 
   return (
     <FakePhonePanel
@@ -34,8 +35,7 @@ const Me: React.FC = () => {
         <Link href="/404">
           <a className="fourohfourlink"> </a>
         </Link>
-        <p>{JSON.stringify(nowPlaying)}</p>
-        <p>{JSON.stringify(error)}</p>
+        <NowPlayingBox track={track} artist={artist} />
         <PokemonDialogBox
           pushLostPage={() => Router.push("/404")}
           onNewText={(newText) => {
