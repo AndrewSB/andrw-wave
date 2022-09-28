@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+import Image from "next/future/image";
 
 type Props = {
   track?: string;
@@ -7,27 +7,45 @@ type Props = {
 };
 
 const NowPlayingBox: React.FC<Props> = ({ track, artist }) => {
-  return (
-    <div className="hidden lg:block fixed bottom-8 left-0 px-8 z-70">
-      <div className="relative duration-100 ">
-        <div className="duration-300 bg-white cursor-pointer h-14 shadow-md flex rounded-md relative">
+  if (track === undefined || artist === undefined) {
+    return null;
+  } else {
+    return (
+      <div className="relative duration-100 bg-transparent">
+        <button
+          onClick={(e) => {
+            alert(
+              `andrew, wherever he may be in the world, is listening to "${track} by ${artist}", literally right now.`
+            );
+            e.preventDefault();
+          }}
+          className="absolute duration-300 hover:scale-110 active:scale-95 transform flex items-center justify-center -top-5 -right-2 z-30 h-10 w-10 border-2 rounded-full overflow-hidden bg-white bg-opacity-20 backdrop-blur-3xl text-white border-opacity-20 border-white"
+        >
+          ?
+        </button>
+        <div
+          className="duration-300 bg-white bg-opacity-30 cursor-pointer h-14 m-4 shadow-md flex rounded-md overflow-y-visible"
+          onClick={() => alert("to")}
+        >
           <Image
             src="/jax.png"
             alt="Jax"
-            width={50}
-            height={50}
-            className="rounded-l-md"
+            width={80}
+            height={80}
+            style={{ height: "intrinsic", marginTop: -24 }}
           />
-          {track && artist && (
-            <div className="flex flex-col justify-center ml-2">
-              <p className="text-sm font-bold">{track}</p>
-              <p className="text-xs">{artist}</p>
-            </div>
-          )}
+          <div className="flex flex-col justify-center ml-2 mr-8 text-left uppercase">
+            <h3 className="font-bold uppercase text-md truncate line-clamp-1 text-white">
+              {track}
+            </h3>
+            <h4 className="uppercase font-mono text-2xs 0 opacity-40 truncate ">
+              {artist}
+            </h4>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default NowPlayingBox;

@@ -35,8 +35,8 @@ const Me: React.FC = () => {
         <Link href="/404">
           <a className="fourohfourlink"> </a>
         </Link>
-        <div>
-          <NowPlayingBox track={track} artist={artist} />
+        <div className="block fixed bottom-20 left-0 px-8 z-70 bg-transparent">
+          <NowPlayingBox track={"track much longer"} artist={"artist"} />
         </div>
         <PokemonDialogBox
           pushLostPage={() => Router.push("/404")}
