@@ -34,11 +34,44 @@ const NowPlayingBox: React.FC<Props> = ({ track, artist }) => {
             height={80}
             style={{ height: "intrinsic", marginTop: -24 }}
           />
-          <div className="flex flex-col justify-center ml-2 mr-8 text-left uppercase">
-            <h3 className="font-bold uppercase text-md truncate line-clamp-1 text-white">
+          <div
+            className="w-5 h-full mx-4 pb-3 pt-3 inline-flex justify-between relative"
+            style={{
+              transition: "all 1s ease",
+            }}
+          >
+            <Keyframes
+              name="bounce"
+              _0={{ transform: "scaleY(0.25)" }}
+              _30={{ transform: "scaleY(0.83)" }}
+              _60={{ transform: "scaleY(0.42)" }}
+              _80={{ transform: "scaleY(0.625)" }}
+              to={{ transform: "scaleY(0.5)" }}
+            />
+            {[0, 2.2, 3.2].map((animationDelay) => (
+              <span
+                key={animationDelay}
+                style={{
+                  background: "#cd2644!important",
+                  opacity: 0.8,
+                  width: 5,
+                  content: "",
+                  height: "100%",
+                  margin: "0 1.5px",
+                  transition: "all 1s ease",
+                  transformOrigin: "bottom",
+                  animation: "bounce 1.8s ease infinite alternate",
+                  animationDelay: `${animationDelay}s`,
+                  transform: "scaleY(0.5)",
+                }}
+              />
+            ))}
+          </div>
+          <div className="flex flex-col justify-center ml-2 mr-8 text-left uppercase overflow-x-hidden">
+            <h3 className="font-bold uppercase text-md truncate line-clamp-1 text-white font-msBold">
               {track}
             </h3>
-            <h4 className="uppercase font-mono text-2xs 0 opacity-40 truncate ">
+            <h4 className="uppercase font-mono text-xs 0 opacity-40 truncate">
               {artist}
             </h4>
           </div>
@@ -49,3 +82,35 @@ const NowPlayingBox: React.FC<Props> = ({ track, artist }) => {
 };
 
 export default NowPlayingBox;
+
+interface KeyframeProps {
+  name: string;
+  [key: string]: React.CSSProperties | string;
+}
+
+const Keyframes = (props: KeyframeProps) => {
+  const toCss = (cssObject: React.CSSProperties | string) =>
+    typeof cssObject === "string"
+      ? cssObject
+      : Object.keys(cssObject).reduce((accumulator, key) => {
+          const cssKey = key.replace(/[A-Z]/g, (v) => `-${v.toLowerCase()}`);
+          const cssValue = (cssObject as any)[key].toString().replace("'", "");
+          return `${accumulator}${cssKey}:${cssValue};`;
+        }, "");
+
+  return (
+    <style>
+      {`@keyframes ${props.name} {
+        ${Object.keys(props)
+          .map((key) => {
+            return ["from", "to"].includes(key)
+              ? `${key} { ${toCss(props[key])} }`
+              : /^_[0-9]+$/.test(key)
+              ? `${key.replace("_", "")}% { ${toCss(props[key])} }`
+              : "";
+          })
+          .join(" ")}
+      }`}
+    </style>
+  );
+};

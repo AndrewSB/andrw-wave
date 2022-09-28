@@ -1,7 +1,7 @@
 import { AppProps } from "next/app";
 import Head from "next/head";
 import { PageTransition } from "next-page-transitions";
-import "../../styles/global.css";
+import "../../public/styles/global.css";
 
 const TITLE = "my work is serious, i am not | mu";
 

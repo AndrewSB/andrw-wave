@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'MSBee-Regular';
+    src: url(/fonts/MSBee-Regular.woff2) format("woff2");
+}
+
+@font-face {
+    font-family: 'MSBee-Bold';
+    src: url(/fonts/MSBee-Bold.woff2) format("woff2");
+}
