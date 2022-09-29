@@ -28,22 +28,32 @@ const Me: React.FC<{ trackEvent: (string) => void }> = ({ trackEvent }) => {
       text-align: center;
     `}
     >
-      <div className={styles.background}>
+      <div
+        style={{
+          backgroundImage: "url('/me.svg')",
+          backgroundSize: "cover",
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          alignItems: "center",
+          position: "relative",
+        }}
+      >
         <Link href="/404">
           <a className="block py-16 w-full h-[88px]" />
         </Link>
         <div className="block fixed left-0 lg:px-14 bg-transparent ml-[-20px] md:ml-0 bottom-24 lg:bottom-14 max-w-full">
           <NowPlayingBox trackEvent={trackEvent} />
         </div>
-        <PokemonDialogBox
-          pushLostPage={() => Router.push("/404")}
-          onNewText={(t) => trackEvent("dialog: " + t.substring(0, 10))}
-          styles={`
-            position: absolute;
-            bottom: 22px;
-            right: 22px;
-          `}
-        />
+        <div className="flex flex-row items-stretch justify-end w-full p-4">
+          {/* <span style={{}}>yo</span> */}
+          <PokemonDialogBox
+            pushLostPage={() => Router.push("/404")}
+            onNewText={(t) => trackEvent("dialog: " + t.substring(0, 10))}
+          />
+        </div>
       </div>
       <style jsx>{`
         .fourohfourlink {

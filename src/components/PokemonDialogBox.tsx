@@ -4,7 +4,6 @@ import { calculateTextDimensions } from "../calculate-text-dimensions";
 import useResizeObserver from "@react-hook/resize-observer";
 
 interface Props {
-  styles?: string;
   onNewText: (newText: string) => void;
   pushLostPage: () => void;
 }
@@ -121,7 +120,10 @@ const PokemonDialogBox: React.FC<Props> = (props) => {
         style={{
           position: "absolute",
           opacity: 0,
+          top: 0,
+          // background: "red",
           left: -2000,
+          // left: 0,
           overflowWrap: "break-word",
           width: (dialogBoxSize?.width ?? 0) - 8,
           fontSize: 14,
@@ -156,8 +158,9 @@ const PokemonDialogBox: React.FC<Props> = (props) => {
         {textDoneTyping && <i />}
         <style jsx>{`
           .box {
-            ${props.styles}
+            ${boxState > 0 ? "flex-grow: 1;" : ""}
             height: ${(measureBoxSize?.height ?? 0) + 25}px;
+            max-width: 100%;
             font-size: 14px;
             font-family: "Press Start 2P", Arial, sans-serif;
             border-radius: 2px;

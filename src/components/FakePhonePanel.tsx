@@ -1,20 +1,18 @@
-import React from 'react';
+import React from "react";
 
 interface Props {
-  className?: string,
-  customStyle?: string,
-  showingWidth: number,
-  children: React.ReactNode,
-};
+  className?: string;
+  customStyle?: string;
+  showingWidth: number;
+  children: React.ReactNode;
+}
 
 const FakePhonePanel: React.FC<Props> = (props) => {
-  let className = props.className ?? 'fake-phone-panel';
+  let className = props.className ?? "fake-phone-panel";
 
   return (
     <div className={className}>
-      <div className='fake-phone-panel-inner'>
-        {props.children}
-      </div>
+      <div className="fake-phone-panel-inner">{props.children}</div>
 
       <style jsx>{`
         .${className} {
@@ -26,7 +24,7 @@ const FakePhonePanel: React.FC<Props> = (props) => {
           height: 100%;
         }
 
-        @media(min-width: ${props.showingWidth}px) {
+        @media (min-width: ${props.showingWidth}px) {
           .${className} {
             padding-bottom: 2vh;
             padding-top: 2vh;
@@ -42,6 +40,6 @@ const FakePhonePanel: React.FC<Props> = (props) => {
       `}</style>
     </div>
   );
-}
+};
 
 export default FakePhonePanel;
