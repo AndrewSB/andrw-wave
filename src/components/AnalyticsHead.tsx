@@ -16,8 +16,7 @@ function numVisits() {
 
 declare global {
   interface Window {
-    tuuid: string;
-    numVisits: number;
+    tuuid?: string;
   }
 }
 
@@ -39,20 +38,25 @@ const TrackAnalyticsHead: React.FC<{
   path: string;
   incrementVists: boolean;
 }> = ({ path, incrementVists }) => {
-  window.tuuid = create_UUID();
-
-  if (process.env.NODE_ENV === "development") {
-    console.log("in development");
-  } else {
-    fetch(
-      `https://enqnftwr161artz.m.pipedream.net?path=${path}&num_visit=${numVisits()}&uuid=${
-        window.tuuid
-      }`
-    );
-    if (incrementVists) {
-      localStorage.setItem("visits", (numVisits() + 1).toString());
+  React.useEffect(() => {
+    if (window.tuuid === undefined) {
+      window.tuuid = create_UUID();
     }
-  }
+
+    if (process.env.NODE_ENV === "development") {
+      console.log("in development");
+    } else {
+      fetch(
+        `https://enqnftwr161artz.m.pipedream.net?path=${path}&num_visit=${numVisits()}&uuid=${
+          window.tuuid
+        }`
+      );
+      if (incrementVists) {
+        localStorage.setItem("visits", (numVisits() + 1).toString());
+      }
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   return null;
 };
 
