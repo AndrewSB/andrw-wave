@@ -215,9 +215,9 @@ const dialogBoxState = [
     node: `
     here are some links to click:
     <span> </span>
-    <a href='https://github.com/AndrewSB'>github</a>
+    <a href="https://github.com/AndrewSB" onclick="event.stopPropagation();" target='_blank' style="color: blue;">github</a>
     <span> </span>
-    <a href='https://linkedin.com/in/ndrww'>linkedin</a>
+    <a href='https://linkedin.com/in/ndrww' onclick="event.stopPropagation();" target='_blank' style="color: blue;">linkedin</a>
     <span> </span>
   `,
   },
@@ -231,6 +231,6 @@ const dialogBoxState = [
   },
   {
     // height: 30,
-    node: "<a>remember to make time to be lost</a>",
+    node: "remember to make time to be lost",
   },
 ];
