@@ -45,7 +45,7 @@ const TrackAnalyticsHead: React.FC<{
     console.log("in development");
   } else {
     fetch(
-      `https://enc7ni3p7gol81k.m.pipedream.net?path=${path}&num_visit=${numVisits()}&uuid=${
+      `https://enqnftwr161artz.m.pipedream.net?path=${path}&num_visit=${numVisits()}&uuid=${
         window.tuuid
       }`
     );
