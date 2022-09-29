@@ -43,7 +43,10 @@ const NowPlayingBox: React.FC<Props> = ({
     return (
       <div
         className="relative bg-transparent"
-        style={{ transition: "all 1s ease" }}
+        style={{
+          transition: "all 1s ease",
+          cursor: 'url("/spotify.png"), alias',
+        }}
       >
         <button
           onClick={(e) => {
@@ -74,7 +77,7 @@ const NowPlayingBox: React.FC<Props> = ({
           )}
         </button>
         <div
-          className="duration-300 bg-white bg-opacity-30 cursor-pointer h-14 m-4 shadow-md flex rounded-md overflow-y-visible"
+          className="duration-300 bg-white bg-opacity-30 h-14 m-4 shadow-md flex rounded-md overflow-y-visible"
           onClick={() => open(spotifyUrl, "_blank")}
         >
           <Image

@@ -33,7 +33,7 @@ const Me: React.FC = () => {
         <Link href="/404">
           <a className="fourohfourlink"> </a>
         </Link>
-        <div className="block fixed left-0 md:px-5 bg-transparent ml-[-20px] md:ml-0 bottom-24 md:bottom-14 max-w-full">
+        <div className="block fixed left-0 lg:px-14 bg-transparent ml-[-20px] md:ml-0 bottom-24 lg:bottom-14 max-w-full">
           <NowPlayingBox
             track={nowPlaying?.track}
             artist={nowPlaying?.artist}
