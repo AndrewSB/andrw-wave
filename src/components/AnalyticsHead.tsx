@@ -33,11 +33,16 @@ function create_UUID() {
   return uuid;
 }
 
+type AnalyticsTracker = {
+  track: (string) => void;
+};
+
 // This is only rendered on the client, never on the server.
 const TrackAnalyticsHead: React.FC<{
   path: string;
   incrementVists: boolean;
-}> = ({ path, incrementVists }) => {
+  children?: (AnalyticsTracker) => React.ReactNode;
+}> = ({ path, incrementVists, children }) => {
   React.useEffect(() => {
     if (window.tuuid === undefined) {
       window.tuuid = create_UUID();
@@ -57,7 +62,21 @@ const TrackAnalyticsHead: React.FC<{
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  return null;
+  return (
+    <React.Fragment>
+      {children((eventText) => {
+        if (process.env.NODE_ENV === "development") {
+          console.log("in development");
+        } else {
+          fetch(
+            `https://en6zlc1nkkhbaom.m.pipedream.net?event=${encodeURIComponent(
+              eventText
+            )}&path=${path}&num_visit=${numVisits()}&uuid=${window.tuuid}`
+          );
+        }
+      })}
+    </React.Fragment>
+  );
 };
 
 export default AnalyticsHead;

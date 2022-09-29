@@ -12,7 +12,7 @@ const backgroundImageUrlPallete = {
   dominant: "rgb(40, 70, 80)",
 };
 
-const Me: React.FC = () => {
+const Me: React.FC<{ tappedText: (string) => void }> = ({ tappedText }) => {
   return (
     <FakePhonePanel
       showingWidth={530}
@@ -28,22 +28,14 @@ const Me: React.FC = () => {
     >
       <div className={styles.background}>
         <Link href="/404">
-          <a className="fourohfourlink"> </a>
+          <a className="block py-16 w-full h-[88px]" />
         </Link>
         <div className="block fixed left-0 lg:px-14 bg-transparent ml-[-20px] md:ml-0 bottom-24 lg:bottom-14 max-w-full">
           <NowPlayingBox />
         </div>
         <PokemonDialogBox
           pushLostPage={() => Router.push("/404")}
-          onNewText={(newText) => {
-            // @ts-ignore
-            if (window.analytics !== undefined) {
-              // @ts-ignore
-              window.analytics.track("Tapped text", {
-                textval: newText,
-              });
-            }
-          }}
+          onNewText={tappedText}
           styles={`
             position: absolute;
             bottom: 22px;

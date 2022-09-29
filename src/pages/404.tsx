@@ -16,7 +16,7 @@ const backgroundImageUrlPallete = {
 
 export default function Custom404() {
   return (
-    <>
+    <React.Fragment>
       <AnalyticsHead path="/404" incrementVists={false} />
       <FakePhonePanel
         showingWidth={800}
@@ -57,6 +57,6 @@ export default function Custom404() {
           color: #e2019b;
         }
       `}</style>
-    </>
+    </React.Fragment>
   );
 }

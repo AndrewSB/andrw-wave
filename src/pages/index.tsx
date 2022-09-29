@@ -4,9 +4,12 @@ import AnalyticsHead from "../components/AnalyticsHead";
 
 export default function Home() {
   return (
-    <>
-      <AnalyticsHead path="/" incrementVists={true} />
-      <Me />
-    </>
+    <React.Fragment>
+      <AnalyticsHead path="/" incrementVists={true}>
+        {(tracker) => {
+          return <Me tappedText={(dialogText) => tracker(dialogText)} />;
+        }}
+      </AnalyticsHead>
+    </React.Fragment>
   );
 }
