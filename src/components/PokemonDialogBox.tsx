@@ -122,7 +122,7 @@ const PokemonDialogBox: React.FC<Props> = (props) => {
                 ? `\`${dialogBoxState[boxState].node}\``
                 : dialogBoxState[boxState].node,
             ]}
-            typeSpeed={12}
+            typeSpeed={5}
             showCursor={false}
           />
         </div>
