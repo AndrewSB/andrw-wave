@@ -64,21 +64,21 @@ const TrackAnalyticsHead: React.FC<ITrackAnalyticsHead> = ({
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  return (
-    <React.Fragment>
-      {children((eventText: string) => {
-        if (process.env.NODE_ENV === "development") {
-          console.log("t: " + eventText);
-        } else {
-          fetch(
-            `https://en6zlc1nkkhbaom.m.pipedream.net?event=${encodeURIComponent(
-              eventText
-            )}&path=${path}&num_visit=${numVisits()}&uuid=${window.tuuid}`
-          );
-        }
-      })}
-    </React.Fragment>
-  );
+  if (children === undefined) {
+    return null;
+  } else {
+    return children((eventText: string) => {
+      if (process.env.NODE_ENV === "development") {
+        console.log("t: " + eventText);
+      } else {
+        fetch(
+          `https://en6zlc1nkkhbaom.m.pipedream.net?event=${encodeURIComponent(
+            eventText
+          )}&path=${path}&num_visit=${numVisits()}&uuid=${window.tuuid}`
+        );
+      }
+    });
+  }
 };
 
 export default AnalyticsHead;
