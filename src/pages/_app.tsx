@@ -1,11 +1,17 @@
 import { AppProps } from "next/app";
 import Head from "next/head";
+import React from "react";
 import { PageTransition } from "next-page-transitions";
+import { trailingCursor } from "cursor-effects";
 import "../../public/styles/global.css";
 
 const TITLE = "my work is serious, i am not | mu";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
+  React.useEffect(() => {
+    new trailingCursor({ particles: 14 });
+  }, []);
+
   return (
     <>
       <Head>

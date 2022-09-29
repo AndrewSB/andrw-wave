@@ -9,36 +9,6 @@ interface Props {
   pushLostPage: () => void;
 }
 
-var dialogBoxState = [
-  {
-    // height: 30,
-    node: "?",
-  },
-  {
-    // height: 30,
-    node: `
-    here are some links to click:
-    <span> </span>
-    <a href='https://github.com/AndrewSB'>github</a>
-    <span> </span>
-    <a href='https://linkedin.com/in/ndrww'>linkedin</a>
-    <span> </span>
-  `,
-  },
-  {
-    // height: 63,
-    node: "if you've made it this far, I would love to get to know you. send an e-mail to <a href='mailto:asbreckenridge@me.com'>asbreckenridge@me.com</a> with an answer to “What's your favorite color?\"",
-  },
-  {
-    // height: 44,
-    node: "no one ever does this. i'd be soOoOo thrilled if you did :)",
-  },
-  {
-    // height: 30,
-    node: "<a>remember to make time to be lost</a>",
-  },
-];
-
 const useSize = (target, shouldIgnore: (number) => boolean) => {
   const [size, setSize] = React.useState<DOMRectReadOnly | null>();
 
@@ -63,6 +33,9 @@ const useSize = (target, shouldIgnore: (number) => boolean) => {
 
 const PokemonDialogBox: React.FC<Props> = (props) => {
   const [boxState, setBoxState] = useState(0);
+  const boxStateRef = React.useRef<number>(); // https://medium.com/programming-essentials/how-to-access-the-state-in-settimeout-inside-a-react-function-component-39a9f031c76f
+  boxStateRef.current = boxState;
+  const [overideBoxState, setOverideBoxState] = useState(false);
 
   const measureRef = React.useRef(null);
   const measureBoxIgnorePredicate = useCallback(() => false, []);
@@ -70,6 +43,7 @@ const PokemonDialogBox: React.FC<Props> = (props) => {
 
   const [typed, setTyped] = useState<any>(null);
   const dialogBoxRef = React.useRef(null);
+
   /// dialogBoxIgnorePredicate: this is a total hack to get around the fact that useResizeObserver fires before
   /// the dangerouslySetInnerHTML takes effect for the opacity 0 measurement div... i wonder if there's a
   /// a better way to do this. maybe i'll figure it out in 2023
@@ -83,13 +57,42 @@ const PokemonDialogBox: React.FC<Props> = (props) => {
   );
   const dialogBoxSize = useSize(dialogBoxRef, dialogBoxIgnorePredicate);
 
-  console.log(dialogBoxSize, measureBoxSize, boxState);
+  // console.log(dialogBoxSize, measureBoxSize, boxState);
 
   const [textDoneTyping, setTextDoneTyping] = useState(true);
   const [skipTypingCommand, setSkipTypingCommand] = useState(true);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (boxStateRef.current === 0) {
+        console.log("presenting affordance");
+        setOverideBoxState(true);
+      }
+    }, 9 * 1000);
+
+    const timer2 = setTimeout(() => {
+      if (boxStateRef.current === 0) {
+        console.log("hiding affordance");
+        setOverideBoxState(false);
+      }
+    }, 14 * 1000);
+
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(timer2);
+    };
+    // i know i'm missing boxState as a dep, but i don't want these timers to restart. i'm using this useEffect as a client onMount
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    // any time the overrideBoxState changes, lets reset typed, (so it can show the yo click here / ?)
+    console.log("resetting");
+    typed?.reset();
+  }, [overideBoxState, typed]);
+
   const handleDialogPress = useCallback(() => {
     if (!textDoneTyping) {
+      console.log(typed);
       typed.reset();
       setSkipTypingCommand(true);
     } else {
@@ -118,7 +121,6 @@ const PokemonDialogBox: React.FC<Props> = (props) => {
         style={{
           position: "absolute",
           opacity: 0,
-          // background: "red",
           left: -2000,
           overflowWrap: "break-word",
           width: (dialogBoxSize?.width ?? 0) - 8,
@@ -132,16 +134,18 @@ const PokemonDialogBox: React.FC<Props> = (props) => {
         onClick={handleDialogPress}
         className={"box " + (boxState == 0 ? "inactive" : "active")}
       >
-        <div ref={dialogBoxRef} id="box-content" className="cursor-default">
+        <div ref={dialogBoxRef} id="box-content">
           <Typed
-            typedRef={(e) => setTyped(e)}
+            typedRef={setTyped}
             preStringTyped={() => setTextDoneTyping(false)}
             onStringTyped={() => {
               setSkipTypingCommand(false);
               setTextDoneTyping(true);
             }}
             strings={[
-              skipTypingCommand
+              overideBoxState && boxState === 0
+                ? "yo, click here"
+                : skipTypingCommand
                 ? `\`${dialogBoxState[boxState].node}\``
                 : dialogBoxState[boxState].node,
             ]}
@@ -200,3 +204,33 @@ const PokemonDialogBox: React.FC<Props> = (props) => {
 };
 
 export default PokemonDialogBox;
+
+const dialogBoxState = [
+  {
+    // height: 30,
+    node: "?",
+  },
+  {
+    // height: 30,
+    node: `
+    here are some links to click:
+    <span> </span>
+    <a href='https://github.com/AndrewSB'>github</a>
+    <span> </span>
+    <a href='https://linkedin.com/in/ndrww'>linkedin</a>
+    <span> </span>
+  `,
+  },
+  {
+    // height: 63,
+    node: "if you've made it this far, I would love to get to know you. send an e-mail to <a href='mailto:asbreckenridge@me.com'>asbreckenridge@me.com</a> with an answer to “What's your favorite color?\"",
+  },
+  {
+    // height: 44,
+    node: "no one ever does this. i'd be soOoOo thrilled if you did :)",
+  },
+  {
+    // height: 30,
+    node: "<a>remember to make time to be lost</a>",
+  },
+];

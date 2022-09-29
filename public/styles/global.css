@@ -11,3 +11,7 @@
     font-family: 'MSBee-Bold';
     src: url(/fonts/MSBee-Bold.woff2) format("woff2");
 }
+
+html {
+    cursor: none;
+}

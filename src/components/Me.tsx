@@ -4,7 +4,6 @@ import Router from "next/router";
 import FakePhonePanel from "./FakePhonePanel";
 import PokemonDialogBox from "./PokemonDialogBox";
 import styles from "./Me.module.css";
-import { useNowPlaying } from "../hooks";
 import NowPlayingBox from "./NowPlayingBox";
 
 // const backgroundImageUrl = 'http://svgshare.com/i/JtN.svg'
@@ -14,8 +13,6 @@ const backgroundImageUrlPallete = {
 };
 
 const Me: React.FC = () => {
-  const { nowPlaying, error } = useNowPlaying();
-
   return (
     <FakePhonePanel
       showingWidth={530}
@@ -34,12 +31,7 @@ const Me: React.FC = () => {
           <a className="fourohfourlink"> </a>
         </Link>
         <div className="block fixed left-0 lg:px-14 bg-transparent ml-[-20px] md:ml-0 bottom-24 lg:bottom-14 max-w-full">
-          <NowPlayingBox
-            track={nowPlaying?.track}
-            artist={nowPlaying?.artist}
-            spotifyUrl={nowPlaying?.external_link}
-            previewUrl={nowPlaying?.preview_url}
-          />
+          <NowPlayingBox />
         </div>
         <PokemonDialogBox
           pushLostPage={() => Router.push("/404")}

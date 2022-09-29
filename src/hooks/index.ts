@@ -1,11 +1,13 @@
 import useSWR from "swr";
+import type { INowPlaying } from "../lib/types";
 
 export function useNowPlaying() {
-  const { data, error } = useSWR(
+  const { data, error } = useSWR<INowPlaying | null>(
     `/api/now-playing`,
     async (url) => {
       const response = await fetch(url);
-      return response.json();
+      const json = await response.json();
+      return json.item;
     },
     {
       refreshInterval: 15 * 1000,
