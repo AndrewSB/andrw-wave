@@ -72,7 +72,7 @@ const PokemonDialogBox: React.FC<Props> = (props) => {
   const dialogBoxRef = React.useRef(null);
   const dialogBoxSize = useSize(dialogBoxRef, 128);
 
-  console.log(dialogBoxSize?.width, measureBoxSize?.height);
+  // console.log(dialogBoxSize?.width, measureBoxSize?.height);
 
   const [textDoneTyping, setTextDoneTyping] = useState(true);
   const [skipTypingCommand, setSkipTypingCommand] = useState(true);

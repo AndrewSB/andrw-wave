@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/future/image";
 
 type Props = {
@@ -15,6 +15,22 @@ const NowPlayingBox: React.FC<Props> = ({
   previewUrl,
 }) => {
   const [isPlaying, setIsPlaying] = React.useState(false);
+  const [previousPreviewUrl, setPreviousPreviewUrl] = React.useState("");
+
+  const audioPlayer = React.useRef(null);
+
+  useEffect(() => {
+    if (previewUrl !== previousPreviewUrl) {
+      setIsPlaying(false);
+      setPreviousPreviewUrl(previewUrl);
+    }
+  }, [
+    isPlaying,
+    setIsPlaying,
+    previewUrl,
+    previousPreviewUrl,
+    setPreviousPreviewUrl,
+  ]);
 
   if (
     track === undefined ||
@@ -25,12 +41,17 @@ const NowPlayingBox: React.FC<Props> = ({
     return null;
   } else {
     return (
-      <div className="relative duration-100 bg-transparent">
+      <div
+        className="relative bg-transparent"
+        style={{ transition: "all 1s ease" }}
+      >
         <button
           onClick={(e) => {
             if (!isPlaying) {
               setIsPlaying(true);
-              new Audio(previewUrl).play();
+              audioPlayer.current?.pause();
+              audioPlayer.current = new Audio(previewUrl);
+              audioPlayer.current.play();
             } else {
               alert(
                 `andrew, wherever he may be in the world, is listening to "${track} by ${artist}", literally right now.`
@@ -64,10 +85,10 @@ const NowPlayingBox: React.FC<Props> = ({
             style={{ height: "intrinsic", marginTop: -24 }}
           />
           <div
-            className="w-5 h-full mx-4 pb-3 pt-3 inline-flex justify-between relative"
+            className="w-5 h-full ml-3 pb-3 pt-3 inline-flex justify-between relative"
             style={{
               transition: "all 1s ease",
-              opacity: isPlaying ? 1 : 0,
+              width: isPlaying ? 5 * 4 : 0,
             }}
           >
             <Keyframes
@@ -78,7 +99,7 @@ const NowPlayingBox: React.FC<Props> = ({
               _80={{ transform: "scaleY(0.625)" }}
               to={{ transform: "scaleY(0.5)" }}
             />
-            {[0, 2.2, 3.2].map((animationDelay) => (
+            {[-3.2, -1.2, 0].map((animationDelay) => (
               <span
                 key={animationDelay}
                 style={{
@@ -97,7 +118,7 @@ const NowPlayingBox: React.FC<Props> = ({
               />
             ))}
           </div>
-          <div className="flex flex-col justify-center ml-2 mr-8 text-left uppercase overflow-x-hidden">
+          <div className="flex flex-col justify-center mx-6 text-left uppercase overflow-x-hidden">
             <h3 className="font-bold uppercase text-md truncate line-clamp-1 text-white font-msBold">
               {track}
             </h3>
