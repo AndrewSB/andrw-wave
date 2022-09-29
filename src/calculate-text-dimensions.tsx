@@ -1,13 +1,8 @@
-export default function calculateTextDimensions(
+export function calculateTextDimensions(
   text: string,
   width: number
 ): { width: number; height: number } {
-  var classes = [];
-
-  classes.push("textDimensionCalculation");
-
-  var div = document.createElement("div");
-  div.setAttribute("class", classes.join(" "));
+  var div = document.createElement("p");
   div.setAttribute(
     "style",
     `width: ${width}px; font-family: "Press Start 2P", Arial, sans-serif;`
@@ -17,11 +12,11 @@ export default function calculateTextDimensions(
 
   document.body.appendChild(div);
 
-  const rect = div.getBoundingClientRect();
-
+  const rect = div.offsetHeight;
+  console.log(rect);
   var dimensions = {
-    width: rect.width,
-    height: rect.height,
+    width: 0,
+    height: rect,
   };
 
   div.parentNode.removeChild(div);
