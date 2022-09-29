@@ -7,7 +7,7 @@ export default function Home() {
     <React.Fragment>
       <AnalyticsHead path="/" incrementVists={true}>
         {(tracker) => {
-          return <Me tappedText={(dialogText) => tracker(dialogText)} />;
+          return <Me trackEvent={tracker} />;
         }}
       </AnalyticsHead>
     </React.Fragment>

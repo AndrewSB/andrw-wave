@@ -12,7 +12,9 @@ const backgroundImageUrlPallete = {
   dominant: "rgb(40, 70, 80)",
 };
 
-const Me: React.FC<{ tappedText: (string) => void }> = ({ tappedText }) => {
+const Me: React.FC<{ trackEvent: (string) => void }> = ({ trackEvent }) => {
+  console.log(trackEvent);
+
   return (
     <FakePhonePanel
       showingWidth={530}
@@ -31,11 +33,11 @@ const Me: React.FC<{ tappedText: (string) => void }> = ({ tappedText }) => {
           <a className="block py-16 w-full h-[88px]" />
         </Link>
         <div className="block fixed left-0 lg:px-14 bg-transparent ml-[-20px] md:ml-0 bottom-24 lg:bottom-14 max-w-full">
-          <NowPlayingBox />
+          <NowPlayingBox trackEvent={trackEvent} />
         </div>
         <PokemonDialogBox
           pushLostPage={() => Router.push("/404")}
-          onNewText={tappedText}
+          onNewText={(t) => trackEvent("dialog: " + t.substring(0, 10))}
           styles={`
             position: absolute;
             bottom: 22px;

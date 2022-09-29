@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Image from "next/future/image";
 import { useNowPlaying } from "../hooks";
 
-const NowPlayingBox = () => {
+const NowPlayingBox = ({ trackEvent }: { trackEvent: (string) => void }) => {
   const { nowPlaying, error } = useNowPlaying();
 
   const [isPlaying, setIsPlaying] = React.useState(false);
@@ -40,11 +40,13 @@ const NowPlayingBox = () => {
           <button
             onClick={(e) => {
               if (!isPlaying) {
+                trackEvent("player: play " + nowPlaying.external_link);
                 setIsPlaying(true);
                 audioPlayer.current?.pause();
                 audioPlayer.current = new Audio(nowPlaying.preview_url);
                 audioPlayer.current.play();
               } else {
+                trackEvent("player: ?");
                 alert(
                   `andrew, wherever he may be in the world, is listening to "${nowPlaying.track} by ${nowPlaying.artist}", literally right now.`
                 );
@@ -67,7 +69,10 @@ const NowPlayingBox = () => {
           </button>
           <div
             className="duration-300 bg-white bg-opacity-30 h-14 m-4 shadow-md flex rounded-md overflow-y-visible"
-            onClick={() => open(nowPlaying.external_link, "_blank")}
+            onClick={() => {
+              trackEvent("player: open spotify " + nowPlaying.external_link);
+              open(nowPlaying.external_link, "_blank");
+            }}
           >
             <Image
               src="/jax.png"
