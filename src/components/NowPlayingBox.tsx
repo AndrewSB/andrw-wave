@@ -25,6 +25,11 @@ const NowPlayingBox = ({ trackEvent }: { trackEvent: (string) => void }) => {
     setPreviousPreviewUrl,
   ]);
 
+  let shouldRenderBox =
+    nowPlaying !== undefined &&
+    nowPlaying.track !== undefined &&
+    nowPlaying.is_playing;
+
   return (
     <div
       className="relative bg-transparent"
@@ -35,7 +40,7 @@ const NowPlayingBox = ({ trackEvent }: { trackEvent: (string) => void }) => {
         // cursor: 'url("' + nowPlaying.album_art + '"), alias',
       }}
     >
-      {nowPlaying?.track !== undefined && (
+      {shouldRenderBox && (
         <React.Fragment>
           <button
             onClick={(e) => {
