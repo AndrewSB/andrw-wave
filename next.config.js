@@ -9,6 +9,11 @@ module.exports = {
         destination: 'https://raw.githubusercontent.com/AndrewSB/dotfiles/master/scripts/new-mac.sh',
         permanent: true,
       },
+      {
+        source: '/lucid',
+        destination: 'http://i.imgur.com/hJmweFb.jpg',
+        permanent: true,
+      },
     ]
   },
      async headers() {
