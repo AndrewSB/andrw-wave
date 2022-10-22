@@ -46,6 +46,14 @@ export const AnalyticsHead: React.FC<ITrackAnalyticsHead> = ({
       window.tuuid = create_UUID();
     }
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const noTrack = urlParams.get("noTrack");
+
+    if (noTrack === "1") {
+      console.log("no track enabled");
+      return;
+    }
+
     if (process.env.NODE_ENV === "development") {
       console.log("in development");
     } else {
