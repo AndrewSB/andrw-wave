@@ -6,12 +6,17 @@ module.exports = {
     return [
       {
         source: '/newmac',
-        destination: 'https://raw.githubusercontent.com/AndrewSB/dotfiles/master/scripts/new-mac.sh',
+        destination: 'https://raw.githubusercontent.com/AndrewSB/dotfiles/master/script/new-mac.sh',
         permanent: true,
       },
       {
         source: '/lucid',
         destination: 'http://i.imgur.com/hJmweFb.jpg',
+        permanent: true,
+      },
+      {
+        source: '/linkedin',
+        destination: 'http://linkedin.com/in/ndrww',
         permanent: true,
       },
     ]
