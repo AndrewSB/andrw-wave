@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Image from "next/future/image";
+import Image from "next/image";
 import { useNowPlaying } from "../hooks";
 
 const NowPlayingBox = ({ trackEvent }: { trackEvent: (string) => void }) => {
