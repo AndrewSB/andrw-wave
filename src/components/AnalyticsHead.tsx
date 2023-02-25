@@ -58,7 +58,7 @@ export const AnalyticsHead: React.FC<ITrackAnalyticsHead> = ({
       console.log("in development");
     } else {
       fetch(
-        `https://enqnftwr161artz.m.pipedream.net?path=${path}&num_visit=${numVisits()}&uuid=${
+        `https://eo509nbwidq9lrl.m.pipedream.net?path=${path}&num_visit=${numVisits()}&uuid=${
           window.tuuid
         }`
       );
@@ -78,7 +78,7 @@ export const AnalyticsHead: React.FC<ITrackAnalyticsHead> = ({
             console.log("t: " + eventText);
           } else {
             fetch(
-              `https://en6zlc1nkkhbaom.m.pipedream.net?event=${encodeURIComponent(
+              `https://eokskaz4e1cln6u.m.pipedream.net?event=${encodeURIComponent(
                 eventText
               )}&path=${path}&num_visit=${numVisits()}&uuid=${window.tuuid}`
             );
