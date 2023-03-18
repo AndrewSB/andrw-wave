@@ -67,7 +67,7 @@ const PokemonDialogBox: React.FC<Props> = (props) => {
         console.log("presenting affordance");
         setOverideBoxState(true);
       }
-    }, 9 * 1000);
+    }, 4 * 1000);
 
     const timer2 = setTimeout(() => {
       if (boxStateRef.current === 0) {
@@ -146,7 +146,7 @@ const PokemonDialogBox: React.FC<Props> = (props) => {
             }}
             strings={[
               overideBoxState && boxState === 0
-                ? "yo, click here"
+                ? "hey, click here"
                 : skipTypingCommand
                 ? `\`${dialogBoxState[boxState].node}\``
                 : dialogBoxState[boxState].node,
