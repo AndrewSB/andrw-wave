@@ -42,7 +42,7 @@ const Me: React.FC<{ trackEvent: (string) => void }> = ({ trackEvent }) => {
         }}
       >
         <Link href="/404" className="block py-16 w-full h-[88px]" />
-        <div className="block fixed left-0 lg:px-14 bg-transparent ml-[-20px] md:ml-0 bottom-24 lg:bottom-14 max-w-full">
+        <div className="block fixed left-0 lg:px-14 bg-transparent ml-[-20px] md:ml-0 bottom-32 lg:bottom-14 max-w-full">
           <NowPlayingBox trackEvent={trackEvent} />
         </div>
         <div className="flex flex-row items-stretch justify-end w-full p-4">
