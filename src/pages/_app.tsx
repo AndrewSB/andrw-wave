@@ -9,7 +9,7 @@ const TITLE = "my work is serious, i am not | mu";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   React.useEffect(() => {
-    new trailingCursor({ particles: 14 });
+    trailingCursor({ particles: 14 });
   }, []);
 
   return (
