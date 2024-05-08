@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback } from "react";
-import Typed from "react-typed";
+import React, { useEffect, useState, useCallback } from "react";
+import { ReactTyped } from "react-typed";
 import { calculateTextDimensions } from "../calculate-text-dimensions";
 import useResizeObserver from "@react-hook/resize-observer";
 
@@ -137,7 +137,7 @@ const PokemonDialogBox: React.FC<Props> = (props) => {
         className={"box " + (boxState == 0 ? "inactive" : "active")}
       >
         <div ref={dialogBoxRef} id="box-content">
-          <Typed
+          <ReactTyped
             typedRef={setTyped}
             preStringTyped={() => setTextDoneTyping(false)}
             onStringTyped={() => {
