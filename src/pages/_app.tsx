@@ -9,7 +9,10 @@ const TITLE = "my work is serious, i am not | mu";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   React.useEffect(() => {
-    trailingCursor({ particles: 14 });
+    // only run if this is a desktop device, not a touch device
+    if (window.matchMedia("(pointer:fine)").matches) {
+      trailingCursor({ particles: 14 });
+    }
   }, []);
 
   return (
