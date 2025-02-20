@@ -2,9 +2,7 @@ import {
   LISTENBRAINZ_KEY,
   SPOTIFY_REFRESH_TOKEN,
   SPOTIFY_SECRET,
-} from "../../constants";
-import { spotifyAPI } from "../../lib/spotify";
-import type { INowPlaying } from "../../lib/types";
+} from "../constants";
 
 export type INowPlayingResponse = {
   isPlaying: boolean;
@@ -79,41 +77,20 @@ async function spotifyAuth(): Promise<any> {
   return newApiKey;
 }
 
-async function spotifyNowPlaying(): Promise<any> {
-  try {
-    const nowPlayingJSON = await spotifyAPI(
-      "https://api.spotify.com/v1/me/player/currently-playing"
-    );
+export async function spotifyAPI(url: string): Promise<any> {
+  const spotifyAuthKey = await spotifyAuth();
 
-    console.log("spotify JSON", nowPlayingJSON);
+  const nowPlaying = await fetch(url, {
+    headers: {
+      "User-Agent": "https://andrew.energy now playing (asbreckenridge@me.com)",
+      Authorization: `Bearer ${spotifyAuthKey}`,
+      "Content-Type": "application/json",
+    },
+  });
 
-    if (nowPlayingJSON.error) {
-      throw new Error("No data returned from Spotify");
-    } else {
-      return {
-        item: {
-          is_playing: nowPlayingJSON.is_playing,
-          progress_ms: nowPlayingJSON.progress_ms,
-          track: nowPlayingJSON.item.name,
-          artist: nowPlayingJSON.item.artists[0].name,
-          album: nowPlayingJSON.item.album.name,
-          album_art: nowPlayingJSON.item.album.images[0].url,
-          external_link: nowPlayingJSON.item.external_urls.spotify,
-          preview_url: nowPlayingJSON.item.preview_url,
-        } as INowPlaying,
-      };
-    }
-  } catch (error) {
-    console.error("error", error);
-    return {};
-  }
-}
-
-export default async function handler(req, res) {
-  try {
-    const nowPlaying = await spotifyNowPlaying();
-    res.status(200).json(nowPlaying);
-  } catch (error) {
-    res.status(500).json({ error });
+  if (nowPlaying.status !== 200) {
+    throw new Error("No data returned from Spotify");
+  } else {
+    return await nowPlaying.json();
   }
 }
