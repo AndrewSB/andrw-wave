@@ -2,10 +2,10 @@ import { spotifyAPI } from "../../lib/spotify";
 
 async function spotifyInfo(): Promise<any> {
   const tracks = await spotifyAPI(
-    "https://api.spotify.com/v1/me/top/tracks?time_range=long_term"
+    "https://api.spotify.com/v1/me/top/tracks?time_range=short_term"
   );
   const artists = await spotifyAPI(
-    "https://api.spotify.com/v1/me/top/artists?time_range=long_term"
+    "https://api.spotify.com/v1/me/top/artists?time_range=short_term"
   );
 
   const topTracks = tracks.items.map((item) => {
