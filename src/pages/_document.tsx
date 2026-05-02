@@ -1,10 +1,21 @@
 import { Html, Head, Main, NextScript } from "next/document";
+import { siteMetadata } from "../siteMetadata";
 
 export default function Document() {
   return (
     <Html>
       <Head>
         <link rel="manifest" href="/manifest.json" />
+        <meta name="application-name" content={siteMetadata.appName} />
+        <meta
+          name="apple-mobile-web-app-title"
+          content={siteMetadata.appName}
+        />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta
+          name="apple-mobile-web-app-status-bar-style"
+          content="black-translucent"
+        />
         <style>{`
         body {
             margin: 0;

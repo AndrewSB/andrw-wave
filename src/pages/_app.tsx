@@ -3,9 +3,9 @@ import Head from "next/head";
 import React from "react";
 import { useRouter } from "next/router";
 import { trailingCursor } from "cursor-effects";
+import { siteMetadata } from "../siteMetadata";
 import "../../public/styles/global.css";
 
-const TITLE = "my work is serious, i am not | mu";
 const EXIT_TIMEOUT_MS = 1650;
 
 type DisplayedPage = Pick<AppProps, "Component" | "pageProps"> & {
@@ -110,14 +110,18 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
         />
-        <meta name="theme-color" content="#000000" />
+        <meta name="theme-color" content={siteMetadata.themeColor} />
         <style>{"body { margin: 0; }"}</style>
-        <title>{TITLE}</title>
-        <meta name="title" content={TITLE} />
-        <meta
-          name="og:image"
-          content="https://i.giphy.com/media/BERINdDXSdkevihtAK/giphy.gif"
-        />
+        <title>{siteMetadata.title}</title>
+        <meta name="description" content={siteMetadata.description} />
+        <link rel="canonical" href={siteMetadata.siteUrl} />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content={siteMetadata.appName} />
+        <meta property="og:url" content={siteMetadata.siteUrl} />
+        <meta property="og:title" content={siteMetadata.title} />
+        <meta property="og:description" content={siteMetadata.description} />
+        <meta property="og:image" content={siteMetadata.previewImage} />
+        <meta property="og:image:type" content="image/gif" />
       </Head>
       <div
         className={
