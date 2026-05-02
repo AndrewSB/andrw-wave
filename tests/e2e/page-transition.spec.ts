@@ -68,13 +68,22 @@ test("keeps homepage overlay layout anchored inside the phone panel", async ({
       .querySelector('img[alt="Jax"]')
       ?.closest(".fixed")
       ?.getBoundingClientRect();
+    const spotifyBackgroundColor = window.getComputedStyle(
+      document.querySelector('[data-testid="now-playing-card"]')!
+    ).backgroundColor;
+    const spotifyBackgroundAlpha =
+      Number(spotifyBackgroundColor.match(/,\s*([.\d]+)\)$/)?.[1]) ||
+      Number(spotifyBackgroundColor.match(/\/\s*([.\d]+)\)/)?.[1]) ||
+      1;
 
     return {
       dialogRight: dialogBox?.right ?? 0,
       spotifyTop: spotifyOverlay?.top ?? 0,
+      spotifyBackgroundAlpha,
     };
   });
 
   expect(layout.dialogRight).toBeLessThanOrEqual(875);
   expect(layout.spotifyTop).toBeGreaterThan(500);
+  expect(layout.spotifyBackgroundAlpha).toBeCloseTo(0.3);
 });

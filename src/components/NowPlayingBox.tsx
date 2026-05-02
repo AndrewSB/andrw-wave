@@ -53,7 +53,7 @@ const NowPlayingBox = ({ trackEvent }: { trackEvent: (string) => void }) => {
               }
               e.preventDefault();
             }}
-            className="absolute duration-300 hover:scale-110 active:scale-95 transform flex items-center justify-center -top-5 -right-2 z-30 h-10 w-10 border-2 rounded-full overflow-hidden bg-white bg-opacity-20 backdrop-blur-3xl text-white border-[#284650]"
+            className="absolute duration-300 hover:scale-110 active:scale-95 transform flex items-center justify-center -top-5 -right-2 z-30 h-10 w-10 border-2 rounded-full overflow-hidden bg-white/20 backdrop-blur-3xl text-white border-[#284650]"
           >
             {isPlaying ? (
               "?"
@@ -68,7 +68,8 @@ const NowPlayingBox = ({ trackEvent }: { trackEvent: (string) => void }) => {
             )}
           </button>
           <div
-            className="duration-300 bg-white bg-opacity-30 h-14 m-4 shadow-md flex rounded-md overflow-y-visible"
+            data-testid="now-playing-card"
+            className="duration-300 bg-white/30 h-14 m-4 shadow-md flex rounded-md overflow-y-visible"
             onClick={() => {
               trackEvent("player: open spotify " + nowPlaying.external_link);
               open(nowPlaying.external_link, "_blank");
