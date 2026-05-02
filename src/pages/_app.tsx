@@ -19,11 +19,33 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     pageProps,
     routeKey: router.asPath,
   });
+  const [isExiting, setIsExiting] = React.useState(false);
   const displayedRouteKeyRef = React.useRef(router.asPath);
   const pendingPageRef = React.useRef<DisplayedPage | null>(null);
   const exitTimerRef = React.useRef<ReturnType<typeof setTimeout> | null>(
     null
   );
+
+  const finishExit = React.useCallback(() => {
+    if (pendingPageRef.current) {
+      displayedRouteKeyRef.current = pendingPageRef.current.routeKey;
+      setDisplayedPage(pendingPageRef.current);
+      pendingPageRef.current = null;
+    }
+
+    setIsExiting(false);
+    exitTimerRef.current = null;
+  }, []);
+
+  const startExit = React.useCallback(() => {
+    setIsExiting(true);
+
+    if (exitTimerRef.current) {
+      clearTimeout(exitTimerRef.current);
+    }
+
+    exitTimerRef.current = setTimeout(finishExit, EXIT_TIMEOUT_MS);
+  }, [finishExit]);
 
   React.useEffect(() => {
     // only run if this is a desktop device, not a touch device
@@ -31,6 +53,28 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       trailingCursor({ particles: 14 });
     }
   }, []);
+
+  React.useEffect(() => {
+    const handleRouteChangeStart = (url: string) => {
+      if (url !== displayedRouteKeyRef.current) {
+        startExit();
+      }
+    };
+
+    const handleRouteChangeError = () => {
+      if (!pendingPageRef.current) {
+        setIsExiting(false);
+      }
+    };
+
+    router.events.on("routeChangeStart", handleRouteChangeStart);
+    router.events.on("routeChangeError", handleRouteChangeError);
+
+    return () => {
+      router.events.off("routeChangeStart", handleRouteChangeStart);
+      router.events.off("routeChangeError", handleRouteChangeError);
+    };
+  }, [router.events, startExit]);
 
   React.useEffect(() => {
     if (router.asPath === displayedRouteKeyRef.current) {
@@ -43,29 +87,21 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       routeKey: router.asPath,
     };
 
-    if (exitTimerRef.current) {
-      clearTimeout(exitTimerRef.current);
+    if (!isExiting) {
+      const frame = requestAnimationFrame(startExit);
+      return () => cancelAnimationFrame(frame);
     }
+  }, [Component, isExiting, pageProps, router.asPath, startExit]);
 
-    exitTimerRef.current = setTimeout(() => {
-      if (pendingPageRef.current) {
-        displayedRouteKeyRef.current = pendingPageRef.current.routeKey;
-        setDisplayedPage(pendingPageRef.current);
-        pendingPageRef.current = null;
-      }
-      exitTimerRef.current = null;
-    }, EXIT_TIMEOUT_MS);
-
+  React.useEffect(() => {
     return () => {
       if (exitTimerRef.current) {
         clearTimeout(exitTimerRef.current);
-        exitTimerRef.current = null;
       }
     };
-  }, [Component, pageProps, router.asPath]);
+  }, []);
 
   const PageComponent = displayedPage.Component;
-  const isExiting = router.asPath !== displayedPage.routeKey;
 
   return (
     <>
