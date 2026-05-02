@@ -1,3 +1,5 @@
+import { pressStart2P } from "./fonts";
+
 export function calculateTextDimensions(
   text: string,
   width: number
@@ -5,7 +7,7 @@ export function calculateTextDimensions(
   var div = document.createElement("p");
   div.setAttribute(
     "style",
-    `width: ${width}px; font-family: "Press Start 2P", Arial, sans-serif;`
+    `width: ${width}px; font-family: ${pressStart2P.style.fontFamily};`
   );
 
   div.innerHTML = text;

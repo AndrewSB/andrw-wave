@@ -4,6 +4,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import { trailingCursor } from "cursor-effects";
 import { siteMetadata } from "../siteMetadata";
+import { msBeeBold, msBeeRegular, pressStart2P } from "../fonts";
 import "../../public/styles/global.css";
 
 const EXIT_TIMEOUT_MS = 1650;
@@ -124,9 +125,11 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <meta property="og:image:type" content="image/gif" />
       </Head>
       <div
-        className={
+        className={`${pressStart2P.variable} ${msBeeRegular.variable} ${
+          msBeeBold.variable
+        } ${
           isExiting ? "transition-fade-exit transition-fade-exit-active" : ""
-        }
+        }`}
       >
         <PageComponent {...displayedPage.pageProps} />
       </div>

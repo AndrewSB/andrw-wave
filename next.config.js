@@ -32,26 +32,4 @@ module.exports = {
       },
     ];
   },
-  async headers() {
-    return [
-      {
-        source: "/fonts/MSBee-Bold.woff2",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
-      },
-      {
-        source: "/fonts/MSBee-Regular.woff2",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
-      },
-    ];
-  },
 };

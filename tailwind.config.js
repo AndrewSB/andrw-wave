@@ -7,8 +7,15 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        msBold: ["MSBee-Bold", ...defaultTheme.fontFamily.sans],
-        msRegular: ["MSBee-Regular", ...defaultTheme.fontFamily.sans],
+        msBold: ["var(--font-msbee-bold)", ...defaultTheme.fontFamily.sans],
+        msRegular: [
+          "var(--font-msbee-regular)",
+          ...defaultTheme.fontFamily.sans,
+        ],
+        pressStart: [
+          "var(--font-press-start-2p)",
+          ...defaultTheme.fontFamily.sans,
+        ],
       },
     },
   },

@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "command": "bun run",
+            "command": "bun run dev",
             "name": "Bun!",
             "request": "launch",
             "type": "node-terminal"

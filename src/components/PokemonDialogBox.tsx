@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import { ReactTyped } from "react-typed";
 import { calculateTextDimensions } from "../calculate-text-dimensions";
 import useResizeObserver from "@react-hook/resize-observer";
+import { pressStart2P } from "../fonts";
 
 interface Props {
   onNewText: (newText: string) => void;
@@ -137,7 +138,7 @@ const PokemonDialogBox: React.FC<Props> = (props) => {
           width: (dialogBoxSize?.width ?? 0) - 8,
           fontSize: 14,
           lineHeight: "16px",
-          fontFamily: '"Press Start 2P", Arial, sans-serif',
+          fontFamily: pressStart2P.style.fontFamily,
         }}
         dangerouslySetInnerHTML={{ __html: dialogBoxState[boxState].node }}
       />
@@ -171,7 +172,7 @@ const PokemonDialogBox: React.FC<Props> = (props) => {
             height: ${(measureBoxSize?.height ?? 0) + 25}px;
             max-width: 100%;
             font-size: 14px;
-            font-family: "Press Start 2P", Arial, sans-serif;
+            font-family: ${pressStart2P.style.fontFamily};
             border-radius: 2px;
             padding: 8px;
             overflow-wrap: break-word;
