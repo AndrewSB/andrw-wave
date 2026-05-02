@@ -1,29 +1,21 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Image from "next/image";
 import { useNowPlaying } from "../hooks";
 
 const NowPlayingBox = ({ trackEvent }: { trackEvent: (string) => void }) => {
   const { nowPlaying, error } = useNowPlaying();
 
-  const [isPlaying, setIsPlaying] = React.useState(false);
-  const [previousPreviewUrl, setPreviousPreviewUrl] = React.useState("");
+  const [playerState, setPlayerState] = React.useState({
+    isPlaying: false,
+    previewUrl: "",
+  });
 
-  const audioPlayer = React.useRef(null);
+  const audioPlayer = React.useRef<HTMLAudioElement | null>(null);
 
   console.log(nowPlaying);
 
-  useEffect(() => {
-    if (nowPlaying?.preview_url !== previousPreviewUrl) {
-      setIsPlaying(false);
-      setPreviousPreviewUrl(nowPlaying?.preview_url);
-    }
-  }, [
-    isPlaying,
-    setIsPlaying,
-    nowPlaying,
-    previousPreviewUrl,
-    setPreviousPreviewUrl,
-  ]);
+  const isPlaying =
+    playerState.isPlaying && playerState.previewUrl === nowPlaying?.preview_url;
 
   let shouldRenderBox =
     nowPlaying !== undefined &&
@@ -46,7 +38,10 @@ const NowPlayingBox = ({ trackEvent }: { trackEvent: (string) => void }) => {
             onClick={(e) => {
               if (!isPlaying) {
                 trackEvent("player: play " + nowPlaying.external_link);
-                setIsPlaying(true);
+                setPlayerState({
+                  isPlaying: true,
+                  previewUrl: nowPlaying.preview_url,
+                });
                 audioPlayer.current?.pause();
                 audioPlayer.current = new Audio(nowPlaying.preview_url);
                 audioPlayer.current.play();

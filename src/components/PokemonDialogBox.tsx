@@ -13,9 +13,16 @@ const useSize = (target, shouldIgnore: (number) => boolean) => {
 
   React.useLayoutEffect(() => {
     const s = target.current.getBoundingClientRect();
+    let frame: number | null = null;
     if (!shouldIgnore(s.height)) {
-      setSize(s);
+      frame = requestAnimationFrame(() => setSize(s));
     }
+
+    return () => {
+      if (frame !== null) {
+        cancelAnimationFrame(frame);
+      }
+    };
   }, [target, shouldIgnore]);
 
   // Where the magic happens
@@ -32,9 +39,12 @@ const useSize = (target, shouldIgnore: (number) => boolean) => {
 
 const PokemonDialogBox: React.FC<Props> = (props) => {
   const [boxState, setBoxState] = useState(0);
-  const boxStateRef = React.useRef<number>(); // https://medium.com/programming-essentials/how-to-access-the-state-in-settimeout-inside-a-react-function-component-39a9f031c76f
-  boxStateRef.current = boxState;
+  const boxStateRef = React.useRef(boxState); // used by delayed affordance timers
   const [overideBoxState, setOverideBoxState] = useState(false);
+
+  useEffect(() => {
+    boxStateRef.current = boxState;
+  }, [boxState]);
 
   const measureRef = React.useRef(null);
   const measureBoxIgnorePredicate = useCallback(() => false, []);
@@ -80,8 +90,7 @@ const PokemonDialogBox: React.FC<Props> = (props) => {
       clearTimeout(timer);
       clearTimeout(timer2);
     };
-    // i know i'm missing boxState as a dep, but i don't want these timers to restart. i'm using this useEffect as a client onMount
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     // any time the overrideBoxState changes, lets reset typed, (so it can show the yo click here / ?)

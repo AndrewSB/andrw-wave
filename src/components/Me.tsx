@@ -2,9 +2,13 @@ import React from "react";
 import Link from "next/link";
 import Router from "next/router";
 import FakePhonePanel from "./FakePhonePanel";
-import PokemonDialogBox from "./PokemonDialogBox";
+import dynamic from "next/dynamic";
 import styles from "./Me.module.css";
 import NowPlayingBox from "./NowPlayingBox";
+
+const PokemonDialogBox = dynamic(() => import("./PokemonDialogBox"), {
+  ssr: false,
+});
 
 // const backgroundImageUrl = 'http://svgshare.com/i/JtN.svg'
 // const oldBackgroundImageUrl = 'https://78.media.tumblr.com/3c9a8417a347d806520acc60267a3dac/tumblr_nkap4jjcuq1twprc3o1_1280.jpg'
