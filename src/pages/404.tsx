@@ -37,6 +37,7 @@ export default function Custom404() {
               src={FourOhFourImage}
               width={250}
               height={250}
+              unoptimized
             />
             <p>4</p>
           </div>
