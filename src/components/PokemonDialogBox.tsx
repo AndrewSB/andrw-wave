@@ -99,11 +99,22 @@ const PokemonDialogBox: React.FC<Props> = (props) => {
     typed?.reset();
   }, [overideBoxState, typed]);
 
+  const finishTyping = useCallback(() => {
+    if (!typed) return;
+
+    // Cancel Typed.js without starting it again, then reveal the complete
+    // message. Calling reset() with its default argument restarts the same
+    // animation before React can apply the skip command.
+    typed.reset(false);
+    typed.replaceText(dialogBoxState[boxState].node);
+
+    setSkipTypingCommand(false);
+    setTextDoneTyping(true);
+  }, [boxState, typed]);
+
   const handleDialogPress = useCallback(() => {
     if (!textDoneTyping) {
-      console.log(typed);
-      typed.reset();
-      setSkipTypingCommand(true);
+      finishTyping();
     } else {
       const nextState = (boxState + 1) % dialogBoxState.length;
       if (nextState == 0) props.pushLostPage();
@@ -113,7 +124,7 @@ const PokemonDialogBox: React.FC<Props> = (props) => {
         typed.reset();
       }
     }
-  }, [boxState, textDoneTyping, typed, props]);
+  }, [boxState, finishTyping, textDoneTyping, typed, props]);
 
   useEffect(() => {
     window.onkeydown = (event) => {
